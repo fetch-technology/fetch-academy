@@ -5,16 +5,16 @@ const fb = {
 } = require('fuse-box')
 
 const production = process.env.NODE_ENV === 'production'
-      || process.env.ENV === 'production'
-      || process.argv.includes('--production')
+  || process.env.ENV === 'production'
+  || process.argv.includes('--production')
 
 const fuse = FuseBox.init({
   homeDir: 'frontend',
   output: 'public/$name.js',
   useTypescriptCompiler: true,
-  sourceMaps:true,
+  sourceMaps: true,
   plugins: [
-    CSSPlugin()
+    CSSPlugin({ group: 'app.css' ,outFile: 'public/app.css', inject: false })
     ,
     production && QuantumPlugin({
       bakeApiIntoBundle: 'app',
