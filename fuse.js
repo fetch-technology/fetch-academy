@@ -12,6 +12,7 @@ const fuse = FuseBox.init({
   homeDir: 'frontend',
   output: 'public/$name.js',
   useTypescriptCompiler: true,
+  sourceMaps:true,
   plugins: [
     production && QuantumPlugin({
       bakeApiIntoBundle: 'app',
