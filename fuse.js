@@ -14,6 +14,8 @@ const fuse = FuseBox.init({
   useTypescriptCompiler: true,
   sourceMaps:true,
   plugins: [
+    CSSPlugin()
+    ,
     production && QuantumPlugin({
       bakeApiIntoBundle: 'app',
       treeshake: true,
