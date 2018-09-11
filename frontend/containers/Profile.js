@@ -73,7 +73,7 @@ export default class Profile extends React.Component {
                     <div className="form-group mb-0">
                       <label className="form-label">About Me</label>
                       <textarea rows="5" className="form-control" placeholder="Here can be your description" value="">
-                      </textarea>>
+                      </textarea>
                 </div>
                   </div>
                 </div>
