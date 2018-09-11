@@ -12,9 +12,9 @@ class LoginForm extends React.Component {
     this.props.handleSignIn()
   }
   render() {
-    if (this.props.isLoggedIn === true) {
-      <Redirect to="/"/>
-    }
+    // if (this.props.isLoggedIn === true) {
+    //   <Redirect to="/"/>
+    // }
     return (
       <div className='page-single loginForm '>
         <div className='container'>

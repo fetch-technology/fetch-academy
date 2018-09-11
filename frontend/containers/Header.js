@@ -1,6 +1,9 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 class Header extends React.Component {
+  handleSignOut = () => {
+    this.props.handleSignOut()
+  }
   render() {
     if (this.props.isLoggedIn === false) {
       return (
@@ -25,6 +28,7 @@ class Header extends React.Component {
                       <span className='text-default'>Jane Pearson</span>
                       <small className='text-muted d-block mt-1'>Administrator</small>
                     </span>
+                    <button className="button1" onClick={this.handleSignOut}><i className="fe fe-power">Sign Out</i></button>
                   </Link>
                 </div>
               </div>

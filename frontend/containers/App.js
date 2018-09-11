@@ -23,6 +23,11 @@ class App extends React.Component {
       })
     })
   }
+  handleSignOut = () => {
+      this.auth2.signOut().then(() => {
+        this.setState({ isLoggedIn: false })
+      })
+  }
   handleSignIn = () => {
     if (this.auth2.isSignedIn.get() === false) {
       this.auth2.signIn().then((user) => {
@@ -36,7 +41,7 @@ class App extends React.Component {
     return (
       <Router>
         <div>
-          <Header {...this.state}/>
+          <Header {...this.state} handleSignOut={this.handleSignOut} />
           <Route exact path='/' component={() =>
             (<LoginForm {...this.state} handleSignIn={this.handleSignIn} />)}
           >
