@@ -30,8 +30,9 @@ class Header extends React.Component {
                                             <span className='text-default'>Jane Pearson</span>
                                             <small className='text-muted d-block mt-1'>Administrator</small>
                                         </span>
+                                        
                                         <button className="button1" onClick={this.handleSignOut}>
-                                            <i className="fe fe-power">Sign Out</i>
+                                        <i class="fa fa-sign-out" data-toggle="tooltip" title="fa fa-sign-out"></i>
                                         </button>
                                     </Link>
                                 </div>
