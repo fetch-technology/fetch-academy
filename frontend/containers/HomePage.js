@@ -48,7 +48,7 @@ export default class HomePage extends React.Component {
                                                 <div>{user.ig}</div>
                                                 <div className="small text-muted">
                                                     Registered: Mar 19, 2018
-                              </div>
+                                                </div>
                                             </td>
                                             <td>
                                                 <div className="small text-muted">Last login</div>

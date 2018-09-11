@@ -8,8 +8,8 @@ from django.contrib.postgres.fields import ArrayField
 class Program(BaseModel):
     name = models.CharField(max_length=250)
     describe = models.TextField(_('Describe'), blank=True, null=True)
-    requirement = models.TextField(_('Content'), blank=True, null=True)
-    goal = models.TextField(_('Content'))
+    requirement = models.TextField(_('Requirement'), blank=True, null=True)
+    goal = models.TextField(_('Goal'))
     
     def __str__(self):
         return self.name
