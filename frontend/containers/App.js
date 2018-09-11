@@ -2,12 +2,14 @@ import * as React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Header from './Header'
 import LoginForm from './LoginForm'
-
+import HomePage from './HomePage'
+import SignOut from './SignOut';
+import { ggAuth } from '../config'
 class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      isLoggedIn: false
+      isLoading: true
     }
   }
   componentDidMount() {
@@ -15,37 +17,30 @@ class App extends React.Component {
       gapi.auth2.init({
         client_id: "484720420395-s49nvjnouu75hh4vpnkimlvb63h4f2tn.apps.googleusercontent.com"
       }).then(() => {
-        var auth2 = gapi.auth2.getAuthInstance()
-        this.auth2 = auth2
-        if (this.auth2.isSignedIn.get() === true) {
-          this.setState({ isLoggedIn: true })
-        }
+        ggAuth = gapi.auth2.getAuthInstance()
+        this.setState({ isLoading: false })
       })
     })
   }
-  handleSignOut = () => {
-      this.auth2.signOut().then(() => {
-        this.setState({ isLoggedIn: false })
-      })
-  }
   handleSignIn = () => {
-    if (this.auth2.isSignedIn.get() === false) {
-      this.auth2.signIn().then((user) => {
-        console.log(user)
-        localStorage.setItem('token', 'login')
-        this.setState({ isLoggedIn: true })
+    if (ggAuth.isSignedIn.get() === false) {
+      ggAuth.signIn().then((user) => {
+        this.setState({ isLoading: false })
       })
     }
   }
   render() {
+    const { isLoading } = this.state
     return (
       <Router>
         <div>
-          <Header {...this.state} handleSignOut={this.handleSignOut} />
-          <Route exact path='/' component={() =>
+          <Route path='/' component={(props) => <Header {...this.state} {...props} handleSignOut={this.handleSignOut} />}></Route>
+          <Route exact path='/' component={(props) => <HomePage isLoading={isLoading} {...props}></HomePage>}></Route>
+          <Route path='/login' component={() =>
             (<LoginForm {...this.state} handleSignIn={this.handleSignIn} />)}
           >
           </Route>
+          <Route path='/signout' component={SignOut} />
         </div>
       </Router>
     )
