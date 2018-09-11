@@ -1,7 +1,7 @@
 const path = require('path')
 const fb = {
   FuseBox, CopyPlugin, QuantumPlugin,
-  LESSPlugin, CSSPlugin,
+  LESSPlugin, CSSPlugin, CSSResourcePlugin
 } = require('fuse-box')
 const production = process.env.NODE_ENV === 'production'
   || process.env.ENV === 'production'
@@ -13,8 +13,8 @@ const fuse = FuseBox.init({
   useTypescriptCompiler: true,
   sourceMaps: true,
   plugins: [
-    CSSPlugin({ group: 'app.css' ,outFile: 'public/app.css', inject: false })
-    ,
+    // CSSResourcePlugin({inline:false}),
+    CSSPlugin({ group: 'app.css' ,outFile: 'public/app.css', inject: false }),
     production && QuantumPlugin({
       bakeApiIntoBundle: 'app',
       treeshake: true,

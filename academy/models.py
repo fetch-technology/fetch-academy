@@ -26,4 +26,3 @@ class Participant(BaseModel):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     begin = models.DateTimeField(_('Begin'), auto_now=True)
     end = models.DateTimeField(_('End'), blank=True, null=True)
-
