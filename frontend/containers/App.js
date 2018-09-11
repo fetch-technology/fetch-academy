@@ -9,7 +9,7 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      isLoading: true
+      isLoading: true,
     }
   }
   componentDidMount() {
@@ -24,7 +24,7 @@ class App extends React.Component {
   }
   handleSignIn = () => {
     if (ggAuth.isSignedIn.get() === false) {
-      ggAuth.signIn().then((user) => {
+      ggAuth.signIn().then((info) => {
         this.setState({ isLoading: false })
       })
     }
