@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Link } from 'react-router-dom'
 class Header extends React.Component {
   render() {
-    if (localStorage.getItem('token') === '' || !localStorage.getItem('token')) {
+    if (this.props.isLoggedIn === false) {
       return (
         <div className='header text-center'>
           <h1 className='m-0'>Fetch Academy</h1>
