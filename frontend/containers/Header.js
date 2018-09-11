@@ -31,8 +31,8 @@ class Header extends React.Component {
                       <span className='text-default'>{user.ig}</span>
                       <small className='text-muted d-block mt-1'>Administrator</small>
                     </span>
-                    <button className="button1" onClick={this.handleSignOut}>
-                      <i className="fe fe-power">Sign Out</i>
+                    <button className="ml-4 btn btn-danger" onClick={this.handleSignOut}>
+                      <i className="fe fe-power"></i>
                     </button>
                   </Link>
                 </div>
