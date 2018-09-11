@@ -8,7 +8,7 @@ class Program(BaseModel):
     name = models.CharField(max_length=250)
 
     def __str__(self):
-        self.name
+        return self.name
 
 
 class Course(BaseModel):
@@ -18,7 +18,7 @@ class Course(BaseModel):
     user = models.ManyToManyField(User, through="Participant")
 
     def __str__(self):
-        self.title
+        return self.title
 
 
 class Participant(BaseModel):

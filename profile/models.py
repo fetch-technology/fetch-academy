@@ -8,7 +8,8 @@ class Team(BaseModel):
     name = models.CharField(max_length=150)
 
     def __str__(self):
-         self.name
+        return self.name
+
 
 class Profile(BaseModel):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -23,4 +24,4 @@ class Profile(BaseModel):
     avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)
 
     def __str__(self):
-        self.phone_number
+        return self.phone_number
