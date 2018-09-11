@@ -48,6 +48,7 @@ class Lesson(BaseModel):
     content = models.TextField(_('Content'))
     program = models.ForeignKey( Program, related_name="lessons", on_delete=models.CASCADE)
     students = models.ManyToManyField(User, through="UserLesson")
+    
     def __str__(self):
         return self.title
 
