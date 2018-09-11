@@ -6,6 +6,9 @@ name = "pypi"
 [packages]
 django = "*"
 "psycopg2" = "*"
+django-model-utils = "*"
+djangorestframework = "*"
+pillow = "*"
 
 [dev-packages]
 

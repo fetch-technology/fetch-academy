@@ -3,7 +3,6 @@ const fb = {
   FuseBox, CopyPlugin, QuantumPlugin,
   LESSPlugin, CSSPlugin,
 } = require('fuse-box')
-
 const production = process.env.NODE_ENV === 'production'
   || process.env.ENV === 'production'
   || process.argv.includes('--production')
@@ -23,6 +22,7 @@ const fuse = FuseBox.init({
     })
   ]
 })
+
 
 const bundle = fuse.bundle('app')
   .instructions('> main.js')
