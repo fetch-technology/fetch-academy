@@ -5,6 +5,8 @@ import LoginForm from './LoginForm'
 import HomePage from './HomePage'
 import SignOut from './SignOut';
 import { ggAuth } from '../config'
+import Profile from './Profile'
+
 class App extends React.Component {
   constructor(props) {
     super(props)
@@ -40,6 +42,7 @@ class App extends React.Component {
             (<LoginForm {...this.state} handleSignIn={this.handleSignIn} />)}
           >
           </Route>
+          <Route path='/profile' component={(props) => <Profile isLoading={isLoading} {...props} />} />
           <Route path='/signout' component={SignOut} />
         </div>
       </Router>

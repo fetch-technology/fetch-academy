@@ -25,7 +25,7 @@ class Header extends React.Component {
               </Link>
               <div className='d-flex ml-auto'>
                 <div className='dropdown'>
-                  <Link to='#' className='nav-link pr-0 leading-none' data-toggle='dropdown'>
+                  <Link to='/profile' className='nav-link pr-0 leading-none' data-toggle='dropdown'>
                     <span className='avatar' style={{ backgroundImage: `url(${user.Paa})` }}></span>
                     <span className='ml-2 d-none d-lg-block'>
                       <span className='text-default'>{user.ig}</span>
