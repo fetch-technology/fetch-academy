@@ -35,8 +35,8 @@ export default class Profile extends React.Component {
                 <div className="row">
                   <div className="col-md-6">
                     <div className="form-group">
-                      <label className="form-label">Company</label>
-                      <input type="text" className="form-control" placeholder="Company" value="" />
+                      <label className="form-label">Full Name</label>
+                      <input type="text" className="form-control" placeholder="Full Name" value="" />
                     </div>
                   </div>
                   <div className="col-sm-6 col-md-6">
@@ -47,34 +47,42 @@ export default class Profile extends React.Component {
                   </div>
                   <div className="col-sm-6 col-md-6">
                     <div className="form-group">
-                      <label className="form-label">First Name</label>
-                      <input type="text" className="form-control" placeholder="First Name" value="" />
+                      <label className="form-label">Team</label>
+                      <input type="text" className="form-control" placeholder="Team" />
                     </div>
                   </div>
                   <div className="col-sm-6 col-md-6">
                     <div className="form-group">
-                      <label className="form-label">Last Name</label>
-                      <input type="text" className="form-control" placeholder="Last Name" value="" />
+                      <label className="form-label">Gender</label>
+                      <select className="form-control">
+                        <option value="1">Male</option>
+                        <option value="2">Female</option>
+                      </select>
                     </div>
                   </div>
                   <div className="col-md-6">
                     <div className="form-group">
-                      <label className="form-label">Address</label>
-                      <input type="text" className="form-control" placeholder="Home Address" value="" />
+                      <label className="form-label">Date Of Birth</label>
+                      <input type="date" className="form-control" value="" />
                     </div>
                   </div>
                   <div className="col-sm-6 col-md-6">
                     <div className="form-group">
-                      <label className="form-label">City</label>
-                      <input type="text" className="form-control" placeholder="City" value="" />
+                      <label className="form-label">Phone Number</label>
+                      <input type="number" className="form-control" placeholder="Phone Number" />
                     </div>
                   </div>
-                  <div className="col-md-12">
+                  <div className="col-md-6">
                     <div className="form-group mb-0">
-                      <label className="form-label">About Me</label>
-                      <textarea rows="5" className="form-control" placeholder="Here can be your description" value="">
-                      </textarea>
-                </div>
+                      <label className="form-label">Link Facebook</label>
+                      <input type="url" className="form-control" placeholder="Link Facebook" />
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="form-group mb-0">
+                      <label className="form-label">Link Github</label>
+                      <input type="url" className="form-control" placeholder="Link Github" />
+                    </div>
                   </div>
                 </div>
               </div>
