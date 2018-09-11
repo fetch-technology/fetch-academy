@@ -6,6 +6,8 @@ import HomePage from './HomePage'
 import SignOut from './SignOut'
 import CourseDetail from './CourseDetail'
 import { ggAuth } from '../config'
+import Profile from './Profile'
+
 class App extends React.Component {
   constructor(props) {
     super(props)
@@ -40,6 +42,7 @@ class App extends React.Component {
           <Route exact path='/' component={(props) => <HomePage isLoading={isLoading} {...props}></HomePage>}></Route>
           <Route path='/login' component={() =>(<LoginForm {...this.state} handleSignIn={this.handleSignIn} />)}>
           </Route>
+          <Route path='/profile' component={(props) => <Profile isLoading={isLoading} {...props} />} />
           <Route path='/signout' component={SignOut} />
           <Route path='/learn/a' component={CourseDetail}/>
 
