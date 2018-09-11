@@ -14,8 +14,8 @@ const fuse = FuseBox.init({
   useTypescriptCompiler: true,
   sourceMaps: true,
   plugins: [
-    [ CSSResourcePlugin({inline:false}), CSSPlugin({ group: 'app.css' ,outFile: 'public/app.css', inject: false }),
-      
+    [ CSSResourcePlugin({ dist: 'public/css-resources', inline: false }),
+      CSSPlugin({ group: 'app.css', outFile: 'public/app.css', inject: false }),
     ],
     production && QuantumPlugin({
       bakeApiIntoBundle: 'app',

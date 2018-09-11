@@ -9839,7 +9839,7 @@ a.text-dark:hover, a.text-dark:focus {
   .table, .text-wrap table {
     border-collapse: collapse !important;
   }
-  
+
   .table td,
   .text-wrap table td, .table th, .text-wrap table th {
     background-color: #fff !important;
@@ -17541,7 +17541,10 @@ svg {
   font-family: "feather";
   src: url("../fonts/feather/feather-webfont.eot");
   /* IE9*/
-  src: url("../fonts/feather/feather-webfont.eot") format("embedded-opentype"), url("../fonts/feather/feather-webfont.woff?t=1501841394106") format("woff"), url("../fonts/feather/feather-webfont.ttf?t=1501841394106") format("truetype"), url("../fonts/feather/feather-webfont.svg?t=1501841394106#feather") format("svg");
+  src: url("../fonts/feather/feather-webfont.eot") format("embedded-opentype"),
+       url("../fonts/feather/feather-webfont.woff") format("woff"),
+       url("../fonts/feather/feather-webfont.ttf") format("truetype"),
+       url("../fonts/feather/feather-webfont.svg#feather") format("svg");
   /* iOS 4.1- */
 }
 
