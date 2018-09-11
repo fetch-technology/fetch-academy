@@ -14,8 +14,9 @@ const fuse = FuseBox.init({
   useTypescriptCompiler: true,
   sourceMaps: true,
   plugins: [
-    // CSSResourcePlugin({inline:false}),
-    CSSPlugin({ group: 'app.css' ,outFile: 'public/app.css', inject: false }),
+    [ CSSResourcePlugin({inline:false}), CSSPlugin({ group: 'app.css' ,outFile: 'public/app.css', inject: false }),
+      
+    ],
     production && QuantumPlugin({
       bakeApiIntoBundle: 'app',
       treeshake: true,
@@ -25,7 +26,7 @@ const fuse = FuseBox.init({
 })
 
 
-fs.copy('frontend/assets/fonts/feather','public/fonts')
+// fs.copy('frontend/assets/fonts/feather','public/fonts')
 const bundle = fuse.bundle('app')
   .instructions('> main.js')
 
