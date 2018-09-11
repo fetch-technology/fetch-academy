@@ -20,6 +20,7 @@ export default class HomePage extends React.Component {
         <Redirect to='/login' />
       )
     }
+    const user = ggAuth.currentUser.Ab.w3 
     return (
       <div className="container">
         <div className="col-12">
@@ -38,12 +39,12 @@ export default class HomePage extends React.Component {
                 <tbody>
                   <tr onClick={() => { this.props.history.push('/courses/123') }}>
                     <td className="text-center" >
-                      <div className="avatar d-block" style={{ backgroundImage: 'url(demo/faces/female/26.jpg)' }}>
+                      <div className="avatar d-block" style={{ backgroundImage: `url(${user.Paa})` }}>
                         <span className="avatar-status bg-green"></span>
                       </div>
                     </td>
                     <td>
-                      <div>Elizabeth Martin</div>
+                      <div>{user.ig}</div>
                       <div className="small text-muted">
                         Registered: Mar 19, 2018
                               </div>
