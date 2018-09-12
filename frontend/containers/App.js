@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import { ggAuth } from '../config'
+import { ggAuth, API_URL } from '../config'
 import { Modal } from 'reactstrap'
 
 import Header from './Header'
@@ -11,6 +11,7 @@ import CourseDetail from './CourseDetail'
 import Profile from './Profile'
 import CourseOverview from './CourseOverview';
 import SignOutModal from '../components/SignOutModal';
+import { PostCSS } from 'fuse-box';
 
 class App extends React.Component {
   constructor(props) {
@@ -39,6 +40,21 @@ class App extends React.Component {
   handleSignIn = () => {
     if (ggAuth.isSignedIn.get() === false) {
       ggAuth.signIn().then((info) => {
+        fetch(`${API_URL}/profile/api/v1/signup`, {
+          method: 'POST',
+          mode: "cors",
+          headers: {
+            
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            'email': info.w3.U3,
+            'first_name': info.w3.ofa,
+            'last_name': info.w3.wea,
+            'username': info.w3.U3,
+            'password': 'django'
+          })
+        })
         this.setState({ isLoading: false })
       })
     }
@@ -56,7 +72,7 @@ class App extends React.Component {
           <Route path='/signout' component={SignOut} />
           <Route path='/courses/:courseId/lessons/:lessonId' component={CourseDetail} />
           <Route exact path='/courses/:id' component={CourseOverview} />
-          <Route path='/' component={(props)=>
+          <Route path='/' component={(props) =>
             <SignOutModal toggle={this.toggleSignOutModal} modal={modal} {...props}></SignOutModal>
           }></Route>
         </div>
