@@ -55,5 +55,5 @@ class Lesson(BaseModel):
 
 class UserLesson(BaseModel):
     student = models.ForeignKey(User, on_delete=models.CASCADE)
-    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
+    lesson = models.ForeignKey(Lesson, related_name='user_lessons', on_delete=models.CASCADE)
     status = models.BooleanField(default=False)
