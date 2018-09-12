@@ -21,8 +21,9 @@ class Header extends React.Component {
         <div className='header py-4'>
           <div className='container'>
             <div className='d-flex'>
-              <Link className='header-brand' to='./'>
-                <img src='https://itviec.com/employers/fetch-technology-vietnam/logo/social/fetch-technology-vietnam-logo.png?VZtsiunoQVLaiSqZcL7Cs98F' className='header-brand-img' alt='tabler logo' />
+              <Link className='header-brand' to='/'>
+                <img src='https://itviec.com/employers/fetch-technology-vietnam/logo/social/fetch-technology-vietnam-logo.png?VZtsiunoQVLaiSqZcL7Cs98F' 
+                className='header-brand-img' alt='tabler logo' />
               </Link>
               <div className='d-flex ml-auto'>
                 <Link to='/profile' className='nav-link pr-0 leading-none' data-toggle='dropdown'>
