@@ -30,8 +30,6 @@ class ProgramAdmin(admin.ModelAdmin):
         LessonInline,
     ]
 
-admin.site.register(models.Program)
 admin.site.register(models.Course, CourseAdmin)
 admin.site.register(models.Participation)
-admin.site.register(models.Lesson)
 admin.site.register(models.UserLesson)
