@@ -10,7 +10,6 @@ class Team(BaseModel):
     def __str__(self):
         return self.name
 
-
 class Profile(BaseModel):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
