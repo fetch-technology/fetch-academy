@@ -1,22 +1,17 @@
 from django.shortcuts import render
-from django.contrib.auth import models
 from rest_framework import generics
+from django.contrib.auth import get_user_model
 from . import serializers, models
+
 
 class CreateUserView(generics.CreateAPIView):
     serializer_class = serializers.UserSerializer
-    queryset = models.User.objects.all()
+    queryset = get_user_model().objects.all()
 
 
-class DetailProfileView(generics.ListAPIView):
+class ProfileRetrieveAPIView(generics.RetrieveUpdateAPIView):
     serializer_class = serializers.ProfileSerializer
-    
-    def get_queryset(self):
-        user = self.kwargs['user']  
-        return models.Profile.objects.filter(user_id=user)
-
-
-class UpdateProfile(generics.UpdateAPIView):
-    serializer_class = serializers.ProfileSerializer
+    lookup_field = 'user'
     queryset = models.Profile.objects.all()
+
 
