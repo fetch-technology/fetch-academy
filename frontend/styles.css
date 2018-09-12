@@ -22,6 +22,9 @@
     margin-bottom: 1.5rem;
     width: 100%;
 }
+.close {
+    display: none;
+}
 .course {
     background-color: #e9e6e6 !important;
 }

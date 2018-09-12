@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from django.utils.duration import _get_duration_components
+from django.contrib.auth import models as user_models
 from . import models
 
 
@@ -7,7 +8,7 @@ class UserLessonSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.UserLesson
-        fields = '__all__'
+        fields = ['status']
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -44,6 +45,9 @@ class UserCourseSerializer(serializers.ModelSerializer):
         return model.course.begin
 
     def get_mentor_name(self, model):
-        return model.course.mentor.get_full_name();
-    
+        return model.course.mentor.get_full_name() 
   
+class DetailUserLessonsSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = models.Lesson
+        fields = ['id', 'created', 'modified', 'files', 'videos', 'title', 'content', 'program',]

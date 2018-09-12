@@ -7,11 +7,11 @@ from django.contrib.auth.models import User
  
 
 class UserLessonAPIView(generics.ListAPIView):
-    serializer_class = serializers.UserLessonSerializer
+    serializer_class = serializers.DetailUserLessonsSerializers
 
     def get_queryset(self):
-        print(self.kwargs)
-        return models.UserLesson.objects.filter(student=self.kwargs['pk'])
+        user = models.User.objects.get(pk=self.kwargs['pk'])
+        return user.lesson_set.filter(program=self.kwargs['program'])
 
 
 class UserCourseViewset(viewsets.ModelViewSet):
@@ -25,4 +25,3 @@ class UserCourseViewset(viewsets.ModelViewSet):
 class UserViewset(viewsets.ModelViewSet):
     serializer_class = serializers.UserSerializer
     queryset = User.objects.all()
-
