@@ -3,3 +3,4 @@ node_modules/
 .fusebox
 __pycache__/
 public/
+.vscode/

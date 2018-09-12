@@ -1,9 +1,13 @@
 from django.contrib import admin
 from . import models
 
-admin.site.register(models.Course)
-admin.site.register(models.Participant)
 
+class ParticipationInline(admin.TabularInline):
+    model = models.Participation
+    extra = 1
+
+class CourseAdmin(admin.ModelAdmin):
+    inlines = (ParticipationInline,)
 
 class UserLessonInline(admin.TabularInline):
     model = models.UserLesson  
@@ -25,3 +29,9 @@ class ProgramAdmin(admin.ModelAdmin):
     inlines = [
         LessonInline,
     ]
+
+admin.site.register(models.Program)
+admin.site.register(models.Course, CourseAdmin)
+admin.site.register(models.Participation)
+admin.site.register(models.Lesson)
+admin.site.register(models.UserLesson)
