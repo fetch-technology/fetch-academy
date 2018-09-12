@@ -2,11 +2,12 @@ import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { ggAuth } from '../config'
 class Header extends React.Component {
-  handleSignOut = () => {
-    this.props.history.push('/signout')
+  constructor(props) {
+    super(props)
   }
+
   render() {
-    const { isLoading } = this.props
+    const { isLoading, toggle } = this.props
     if (isLoading || (!isLoading && !ggAuth.isSignedIn.get())) {
       return (
         <div className='header text-center'>
@@ -31,7 +32,7 @@ class Header extends React.Component {
                     <small className='text-muted d-block mt-1'>Administrator</small>
                   </span>
                 </Link>
-                <button className="ml-4 btn btn-danger" title="Sign Out" onClick={this.handleSignOut}>
+                <button className="ml-4 btn btn-danger" title="Sign Out" onClick={toggle}>
                   <i className="fe fe-power"></i>
                 </button>
               </div>
