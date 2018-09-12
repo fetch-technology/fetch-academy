@@ -24,7 +24,7 @@ class App extends React.Component {
   componentDidMount() {
     gapi.load('auth2', () => {
       gapi.auth2.init({
-        client_id: "484720420395-s49nvjnouu75hh4vpnkimlvb63h4f2tn.apps.googleusercontent.com"
+        client_id: '484720420395-s49nvjnouu75hh4vpnkimlvb63h4f2tn.apps.googleusercontent.com'
       }).then(() => {
         ggAuth = gapi.auth2.getAuthInstance()
         this.setState({ isLoading: false })

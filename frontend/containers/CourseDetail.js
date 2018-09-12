@@ -17,8 +17,8 @@ export default class CourseDetail extends React.Component {
   render() {
     return (
       <div className='container mt-5'>
-        <div className="page-header">
-          <h1 className="page-title">
+        <div className='page-header'>
+          <h1 className='page-title'>
             Course name ......
         	</h1>
         </div>

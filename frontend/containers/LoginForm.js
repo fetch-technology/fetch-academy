@@ -1,7 +1,7 @@
 /* global gapi */
 
 import * as React from 'react'
-import { GoogleLoginButton } from "react-social-login-buttons";
+import { GoogleLoginButton } from 'react-social-login-buttons';
 import { Redirect } from 'react-router-dom'
 import {ggAuth} from '../config'
 

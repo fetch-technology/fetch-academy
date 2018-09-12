@@ -7,8 +7,8 @@ export default class Expand extends React.Component {
 
   render() {
     return (
-      <div className="card-footer">
-        <Link to="/courses/:id" className="font-weight-light">
+      <div className='card-footer'>
+        <Link to='/courses/:id' className='font-weight-light'>
           Course Overview
 
         </Link>

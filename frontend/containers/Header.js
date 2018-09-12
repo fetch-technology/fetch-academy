@@ -32,8 +32,8 @@ class Header extends React.Component {
                     <small className='text-muted d-block mt-1'>Administrator</small>
                   </span>
                 </Link>
-                <button className="ml-4 btn btn-danger" title="Sign Out" onClick={toggle}>
-                  <i className="fe fe-power"></i>
+                <button className='ml-4 btn btn-danger' title='Sign Out' onClick={toggle}>
+                  <i className='fe fe-power'></i>
                 </button>
               </div>
             </div>
