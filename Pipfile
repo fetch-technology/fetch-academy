@@ -9,6 +9,8 @@ django-model-utils="*"
 "psycopg2" = "*"
 djangorestframework = "*"
 pillow = "*"
+pipfile = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 
