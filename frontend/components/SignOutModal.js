@@ -9,11 +9,11 @@ export default function SignOutModal(props) {
         Do you want to sign out ?
       </ModalBody>
       <ModalFooter>
-        <Button color="primary" onClick={props.toggle} onClick={()=>{
+        <Button color='primary' onClick={props.toggle} onClick={()=>{
           props.toggle()
           props.history.push('/signout')
         }}>Yes</Button>{' '}
-        <Button color="secondary" onClick={props.toggle}>No</Button>
+        <Button color='secondary' onClick={props.toggle}>No</Button>
       </ModalFooter>
     </Modal>
   )
