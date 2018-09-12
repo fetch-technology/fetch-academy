@@ -44,7 +44,7 @@ class App extends React.Component {
           </Route>
           <Route path='/profile' component={(props) => <Profile isLoading={isLoading} {...props} />} />
           <Route path='/signout' component={SignOut} />
-          <Route path='/learn/a' component={CourseDetail}/>
+          <Route path='/learn' component={CourseDetail}/>
 
         </div>
       </Router>

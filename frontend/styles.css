@@ -22,3 +22,15 @@
     margin-bottom: 1.5rem;
     width: 100%;
 }
+.course {
+    background-color: #e9e6e6 !important;
+}
+.expand {
+    -moz-transition: height .5s;
+    -ms-transition: height .5s;
+    -o-transition: height .5s;
+    -webkit-transition: height .5s;
+    transition: height 15s;
+    height: 0;
+}
+

@@ -1,14 +1,18 @@
 import * as React from 'react'
 import { Redirect } from 'react-router-dom'
 import { ggAuth } from '../config'
-import { Link } from 'react-router-dom'
+import ExpandCourse from './ExpandCourse'
 
 export default class HomePage extends React.Component {
     constructor(props) {
         super(props)
+        this.state = {
+            expandList: false
+        }
     }
     render() {
         const { isLoading } = this.props
+        const { expandList } = this.state
         if (isLoading) {
             return (
                 <div>Loading
@@ -31,23 +35,23 @@ export default class HomePage extends React.Component {
                                     <thead>
                                         <tr>
                                             <th className="text-center w-1"><i className="icon-people"></i></th>
-                                            <th>User</th>
+                                            <th>Course</th>
                                             <th>Activity</th>
                                             <th>Begin-End</th>
                                             <th>Progress</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr onClick={() => { this.props.history.push('/courses/123') }}>
+                                    <tbody className="course">
+                                        <tr onClick={() => this.setState({ expandList: !expandList })}>
                                             <td className="text-center" >
                                                 <div className="avatar d-block" style={{ backgroundImage: `url(${user.Paa})` }}>
                                                     <span className="avatar-status bg-green"></span>
                                                 </div>
                                             </td>
                                             <td>
-                                                <div>{user.ig}</div>
+                                                <div>Python</div>
                                                 <div className="small text-muted">
-                                                    Registered: Mar 19, 2018
+                                                    Mentor: Tung Dao
                                                 </div>
                                             </td>
                                             <td>
@@ -70,6 +74,11 @@ export default class HomePage extends React.Component {
                                         </tr>
                                     </tbody>
                                 </table>
+                                {
+                                    expandList === true && (
+                                        <ExpandCourse />
+                                    )
+                                }
                             </div>
                         </div>
                     </div>
