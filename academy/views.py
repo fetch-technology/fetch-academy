@@ -8,4 +8,4 @@ class UserLessonAPIView(generics.ListAPIView):
 
     def get_queryset(self):
         user = models.User.objects.get(pk=self.kwargs['pk'])
-        return user.lesson_set.all()
+        return user.lesson_set.filter(program=self.kwargs['program'])
