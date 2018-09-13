@@ -37,3 +37,10 @@
     height: 0;
 }
 
+tbody.course td {
+    max-width: 200px;
+    white-space: normal;
+}
+a:hover {
+    text-decoration: none !important;
+}
