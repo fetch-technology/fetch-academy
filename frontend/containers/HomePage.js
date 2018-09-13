@@ -55,7 +55,7 @@ export default class HomePage extends React.Component {
                               <tr>
                                 <th className='text-center w-1'><i className='icon-people'></i></th>
                                 <th>Course</th>
-                                <th>Activity</th>
+                                <th>Goals</th>
                                 <th>Begin-End</th>
                                 <th>Progress</th>
                               </tr>
@@ -74,8 +74,7 @@ export default class HomePage extends React.Component {
                                   </div>
                                 </td>
                                 <td>
-                                  <div className='small text-muted'>Last login</div>
-                                  <div>4 minutes ago</div>
+                                  <small>51-25-1209jsajsdkj;skfjlMaster 128412wdfadfjalsdkfj12412412412124124Python</small>
                                 </td>
                                 <td>
                                   <small className='text-center'>{course.begin} - {course.end}</small>
