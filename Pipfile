@@ -12,6 +12,7 @@ pillow = "*"
 pipfile = "*"
 django-cors-headers = "*"
 django-ckeditor = "*"
+django-tinymce = "*"
 
 [dev-packages]
 

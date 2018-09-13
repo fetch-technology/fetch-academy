@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import { ggAuth, API_URL } from '../config'
+import { ggAuth, API_URL, USER_ID } from '../config'
 import { Modal } from 'reactstrap'
 
 import Header from './Header'
@@ -18,7 +18,8 @@ class App extends React.Component {
     super(props)
     this.state = {
       isLoading: true,
-      modal: false
+      modal: false,
+      userId: ''
     }
   }
 
@@ -44,7 +45,7 @@ class App extends React.Component {
           method: 'POST',
           mode: "cors",
           headers: {
-            
+
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
@@ -55,7 +56,11 @@ class App extends React.Component {
             'password': 'django'
           })
         })
-        this.setState({ isLoading: false })
+          .then(res => res.json())
+          .then(res => {
+            USER_ID = res.id
+            this.setState({ isLoading: false })
+          })
       })
     }
   }
@@ -65,7 +70,7 @@ class App extends React.Component {
       <Router>
         <div>
           <Header {...this.state} handleSignOut={this.handleSignOut} toggle={this.toggleSignOutModal} />
-          <Route exact path='/' component={(props) => <HomePage isLoading={isLoading} {...props}></HomePage>}></Route>
+          <Route exact path='/' component={(props) => <HomePage {...this.state} isLoading={isLoading} {...props}></HomePage>}></Route>
           <Route path='/login' component={() => (<LoginForm {...this.state} handleSignIn={this.handleSignIn} />)}>
           </Route>
           <Route path='/profile' component={(props) => <Profile isLoading={isLoading} {...props} />} />
