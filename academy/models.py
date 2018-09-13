@@ -3,6 +3,7 @@ from fetch_academy.models import BaseModel
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.postgres.fields import ArrayField
+from ckeditor.fields import RichTextField
 
 
 class Program(BaseModel):
@@ -45,7 +46,7 @@ class Lesson(BaseModel):
                 size=10, null=True
         )
     title = models.CharField(_('Title'), max_length=250)
-    content = models.TextField(_('Content'))
+    content = RichTextField(_('Content'))
     program = models.ForeignKey( Program, related_name='lessons', on_delete=models.CASCADE)
     students = models.ManyToManyField(User, through='UserLesson')
     
