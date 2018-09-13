@@ -8,10 +8,27 @@ export default class Expand extends React.Component {
   render() {
     return (
       <div className='card-footer'>
-        <Link to='/courses/:id' className='font-weight-light'>
-          Course Overview
+        <ul className='list-unstyled leading-loose ml-5'>
+          <li className=''>
+            <i className='fe fe-align-justify mr-5'></i>
+            <Link to='/courses/:id' className='font-weight-bold'>
+              Course Overview
+          </Link>
+          </li>
+          <li>
+            <i className='fe fe-chevron-right mr-5'></i>
+            <Link to='/courses/:id/lessons/1' className='font-weight-bold'>
+              Lesson 1
+          </Link>
+          </li>
+          <li>
+          <i className='fe fe-chevron-right mr-5'></i>
+            <Link to='/courses/:id/lessons/1' className='font-weight-bold'>
+              Lesson 1
+          </Link>
+          </li>
 
-        </Link>
+        </ul>
       </div>
     )
   }
