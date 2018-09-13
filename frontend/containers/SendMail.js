@@ -8,7 +8,7 @@ export default class SendMail extends React.Component {
   render() {
     return (
       <div className="container mx-auto">
-        <div className="card m-5  ">
+        <div className="card mt-4 ">
           <div className="card-header">
             <h3 className="card-title">Send mail :</h3>
           </div>
