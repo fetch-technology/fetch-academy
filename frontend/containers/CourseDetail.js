@@ -14,6 +14,9 @@ export default class CourseDetail extends React.Component {
   onScrollToElement = (ref) => {
     animateScroll.scrollTo(ref.current.offsetTop)
   }
+  componentDidMount() {
+    
+  }
   render() {
     return (
       <div className='container mt-5'>
@@ -23,7 +26,7 @@ export default class CourseDetail extends React.Component {
         	</h1>
         </div>
         <div className='row'>
-          <LessonList fileRef={this.fileRef} textRef={this.textRef} onScrollToElement= {this.onScrollToElement}></LessonList>
+          <LessonList className='col-lg-3 order-lg-1 sticky-top align-self-start' fileRef={this.fileRef} textRef={this.textRef} onScrollToElement={this.onScrollToElement}></LessonList>
           <LessonContent fileRef={this.fileRef} textRef={this.textRef}></LessonContent>
         </div>
       </div>
