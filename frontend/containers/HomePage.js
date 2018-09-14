@@ -22,10 +22,7 @@ export default class HomePage extends React.Component {
     })
       .then(res => res.json())
       .then(res => {
-        let getUserCourses = res.map(userInfo => {
-          return userInfo
-        })
-        this.setState({ courses: getUserCourses })
+        this.setState({ courses: res })
       })
 
   }
@@ -34,8 +31,7 @@ export default class HomePage extends React.Component {
     const { expandList, courses } = this.state
     if (isLoading) {
       return (
-        <div>Loading
-                </div>
+        <div>Loading</div>
       )
     }
     if (!isLoading && !ggAuth.isSignedIn.get()) {
