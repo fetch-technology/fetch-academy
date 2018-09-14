@@ -51,7 +51,7 @@ export default class HomePage extends React.Component {
               courses.length === 0 ? (
                 <p>No courses available</p>
               ) : (
-                  courses.map((infoCourse,i) => {
+                  courses.map((courseInfo, i) => {
                     return (
                       <div className='card' key={i}>
                         <div className='table-responsive'>
@@ -73,16 +73,16 @@ export default class HomePage extends React.Component {
                                   </div>
                                 </td>
                                 <td>
-                                  <div>{infoCourse.course.title}</div>
+                                  <div>{courseInfo.course.title}</div>
                                   <div className='small text-muted'>
-                                    Mentor: {infoCourse.mentor}
+                                    Mentor: {courseInfo.mentor}
                                   </div>
                                 </td>
                                 <td>
-                                  <small>{infoCourse.program.goal}</small>
+                                  <small>{courseInfo.program.goal}</small>
                                 </td>
                                 <td>
-                                  <small className='text-center'>{infoCourse.begin} - {infoCourse.end}</small>
+                                  <small className='text-center'>{courseInfo.begin} - {courseInfo.end}</small>
                                 </td>
                                 <td>
                                   <div className='clearfix'>
@@ -97,7 +97,7 @@ export default class HomePage extends React.Component {
                               </tr>
                             </tbody>
                           </table>
-                          <Courses courseId={infoCourse.id} expanding={expandList} />
+                          <Courses courseId={courseInfo.id} expanding={expandList} />
                         </div>
                       </div>
                     )
