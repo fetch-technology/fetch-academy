@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from rest_framework import generics
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, logout as base_logout
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 from . import serializers, models
 
 
@@ -14,4 +16,7 @@ class ProfileRetrieveAPIView(generics.RetrieveUpdateAPIView):
     lookup_field = 'user'
     queryset = models.Profile.objects.all()
 
-
+@api_view(['GET'])
+def logout(request):
+    base_logout(request)
+    return Response({"message": "Hello, world!"})
