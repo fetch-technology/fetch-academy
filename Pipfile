@@ -14,8 +14,6 @@ django-cors-headers = "*"
 django-ckeditor = "*"
 django-tinymce = "*"
 requests = "*"
-python-jwt = "*"
-google-api-python-client = "*"
 
 [dev-packages]
 
