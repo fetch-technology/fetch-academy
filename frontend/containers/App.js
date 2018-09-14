@@ -41,7 +41,7 @@ class App extends React.Component {
   handleSignIn = () => {
     if (ggAuth.isSignedIn.get() === false) {
       ggAuth.signIn().then((info) => {
-        fetch(`${API_URL}/profile/api/v1/signup`, {
+        fetch(`${API_URL}/profile/api/v1/login`, {
           method: 'POST',
           mode: 'cors',
           credentials: 'include',
@@ -52,7 +52,6 @@ class App extends React.Component {
             'access_token': info.Zi.access_token
           }),
           credentials: 'include'
-
         })
           .then(res => res.json())
           .then(res => {

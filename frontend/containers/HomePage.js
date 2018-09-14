@@ -72,7 +72,7 @@ export default class HomePage extends React.Component {
                                 <td>
                                   <div>{courseInfo.title}</div>
                                   <div className='small text-muted'>
-                                    Mentor: {courseInfo.mentor.full_name}
+                                    Mentor: {courseInfo.mentor.email}
                                   </div>
                                 </td>
                                 <td>
