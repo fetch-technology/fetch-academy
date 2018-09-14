@@ -24,7 +24,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.User
-        fields = ['last_name', 'first_name', 'email', 'full_name']
+        fields = ['last_name', 'first_name', 'email', 'full_name', 'id']
 
     def get_full_name(self, model):
         return model.get_full_name()
@@ -34,7 +34,7 @@ class ProgramSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Program
-        fields = ['name', 'describe', 'requirement', 'goal']
+        fields = ['name', 'describe', 'requirement', 'goal', 'id']
 
 
 class CourseSerializer(serializers.ModelSerializer):
