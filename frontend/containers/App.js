@@ -50,11 +50,6 @@ class App extends React.Component {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            'email': info.w3.U3,
-            'first_name': info.w3.ofa,
-            'last_name': info.w3.wea,
-            'username': info.w3.U3,
-            'password': '1',
             'access_token': info.getAuthResponse().login_hint
           })
         })
