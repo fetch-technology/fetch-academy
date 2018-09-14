@@ -15,7 +15,7 @@ class UserSerializer(serializers.ModelSerializer):
         try:
             self.instance = User.objects.get(username=validated_data['username'])
             return self.instance
-        except User.DoesNotExists:
+        except User.DoesNotExist:
             return super().create(validated_data)
 
     def is_valid(self, raise_exception=False):
