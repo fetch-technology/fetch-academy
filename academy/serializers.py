@@ -41,43 +41,29 @@ class CourseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Course
-        exclude = ('is_removed', 'program', 'mentor', 'students', 'lessons',)   
-
-
-# class UserCourseSerializer(serializers.ModelSerializer):
-
-#     class Meta:
-#         model = models.Participation
-#         fields = '__all__' 
-#         depth = 2 
+        fields = '__all__'  
 
 
 class UserCourseSerializer(serializers.ModelSerializer):
     user = UserProfileSerializer(read_only=True)
-    course = CourseSerializer(read_only=True)
-    program = serializers.SerializerMethodField()
-    mentor = serializers.SerializerMethodField()
+    program = ProgramSerializer(read_only=True)
+    mentor = UserProfileSerializer(read_only=True)
     student_count = serializers.SerializerMethodField()
     opened_lesson_count = serializers.SerializerMethodField()
+    lesson_count = serializers.SerializerMethodField()
 
     class Meta:
-        model = models.Participation
-        fields = ['begin', 'end', 'user', 'program', 'id', 'mentor', 'student_count', 'opened_lesson_count','course']
-        depth = 1
-    
-    def get_program(self, model):
-        serializer = ProgramSerializer(model.course.program)
-        return serializer.data
-    
-    def get_mentor(self, model):
-        return model.course.mentor.get_full_name()
-    
+        model = models.Course
+        exclude = ['is_removed', 'lessons', 'students', 'created', 'modified']
+
     def get_student_count(self, model):
-        return model.course.students.count()  
+        return model.students.count()  
     
     def get_opened_lesson_count(self, model):
-        # return len(model.course.opened_lessons)
-        return model.course.opened_lessons.count()
+        return model.opened_lessons.count()
+    
+    def get_lesson_count(self, model):
+        return model.program.lessons.count()
 
 
 class DetailUserLessonsSerializers(serializers.ModelSerializer):

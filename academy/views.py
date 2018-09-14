@@ -14,11 +14,11 @@ class UserLessonAPIView(generics.ListAPIView):
         return user.lesson_set.filter(program=self.kwargs['program'])
 
 
-class UserCourseAPIView(viewsets.ModelViewSet):
+class UserCourseViewset(viewsets.ModelViewSet):
     serializer_class = serializers.UserCourseSerializer
 
     def get_queryset(self):
-        return models.Participation.objects.filter(user=self.request.user)
+        return self.request.user.courses
 
 
 class CourseViewset(viewsets.ModelViewSet):
