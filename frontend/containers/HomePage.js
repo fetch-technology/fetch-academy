@@ -97,11 +97,7 @@ export default class HomePage extends React.Component {
                               </tr>
                             </tbody>
                           </table>
-                          {
-                            expandList === true && (
-                              <ExpandCourse courseId={infoCourse.id} />
-                            )
-                          }
+                          <ExpandCourse courseId={infoCourse.id} expanding={expandList} />
                         </div>
                       </div>
                     )
