@@ -44,6 +44,7 @@ class App extends React.Component {
         fetch(`${API_URL}/profile/api/v1/signup`, {
           method: 'POST',
           mode: 'cors',
+          credentials: 'include',
           headers: {
             'Content-Type': 'application/json'
           },
