@@ -47,6 +47,7 @@ class CourseSerializer(serializers.ModelSerializer):
 class UserCourseSerializer(serializers.ModelSerializer):
     user = UserProfileSerializer(read_only=True)
     program = ProgramSerializer(read_only=True)
+    students = UserProfileSerializer(read_only=True, many=True)
     mentor = UserProfileSerializer(read_only=True)
     student_count = serializers.SerializerMethodField()
     opened_lesson_count = serializers.SerializerMethodField()
@@ -54,7 +55,8 @@ class UserCourseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Course
-        exclude = ['is_removed', 'lessons', 'students', 'created', 'modified']
+        exclude = ['is_removed', 'lessons', 'created', 'modified']
+        depth = 2
 
     def get_student_count(self, model):
         return model.students.count()  
