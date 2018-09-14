@@ -9,5 +9,6 @@ router.register('user_courses', views.UserCourseAPIView, base_name='user-courses
 
 urlpatterns = [
     path('api/v1/lessons/<int:program>', views.UserLessonAPIView.as_view(), name='user_lessons'),
+    path('api/v1/lesson/<int:pk>', views.DetailLessonAPIView.as_view(), name='detail_lesson'),
     path('api/v1/', include(router.urls)),
 ]

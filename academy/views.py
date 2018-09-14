@@ -14,6 +14,11 @@ class UserLessonAPIView(generics.ListAPIView):
         return user.lesson_set.filter(program=self.kwargs['program'])
 
 
+class DetailLessonAPIView(generics.RetrieveAPIView):
+    serializer_class = serializers.DetailUserLessonsSerializers
+    queryset = models.Lesson.objects.all()
+
+
 class UserCourseAPIView(viewsets.ModelViewSet):
     serializer_class = serializers.UserCourseSerializer
 
