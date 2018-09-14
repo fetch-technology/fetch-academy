@@ -1,17 +1,16 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
-import * as cx from 'classnames'
-
-export default class ExpandCourse extends React.Component {
+import { Expand } from '../components/Expand'
+export default class Courses extends React.Component {
   render() {
     const { expanding } = this.props
 
-    if(!this.props.courseId) {
+    if (!this.props.courseId) {
       return <p>This course is not in Fetch Academy</p>
     }
 
     return (
-      <div className={cx('card-footer', { expand: expanding })}>
+      <Expand expanding={expanding}>
         <ul className='list-unstyled leading-loose ml-5'>
           <li className=''>
             <i className='fe fe-align-justify mr-5'></i>
@@ -26,7 +25,7 @@ export default class ExpandCourse extends React.Component {
           </Link>
           </li>
           <li>
-          <i className='fe fe-chevron-right mr-5'></i>
+            <i className='fe fe-chevron-right mr-5'></i>
             <Link to='/courses/:id/lessons/1' className='font-weight-bold'>
               Lesson 1
           </Link>
@@ -44,7 +43,7 @@ export default class ExpandCourse extends React.Component {
           </Link>
           </li>
           <li>
-          <i className='fe fe-chevron-right mr-5'></i>
+            <i className='fe fe-chevron-right mr-5'></i>
             <Link to='/courses/:id/lessons/1' className='font-weight-bold'>
               Lesson 1
           </Link>
@@ -62,13 +61,13 @@ export default class ExpandCourse extends React.Component {
           </Link>
           </li>
           <li>
-          <i className='fe fe-chevron-right mr-5'></i>
+            <i className='fe fe-chevron-right mr-5'></i>
             <Link to='/courses/:id/lessons/1' className='font-weight-bold'>
               Lesson 1
           </Link>
           </li>
         </ul>
-      </div>
+      </Expand>
     )
   }
 }
