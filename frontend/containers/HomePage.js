@@ -12,7 +12,7 @@ export default class HomePage extends React.Component {
     }
   }
   componentDidMount() {
-    fetch(`${API_URL}/academy/api/v1/user_courses/${USER_ID}/`, {
+    fetch(`${API_URL}/academy/api/v1/user_courses/2/`, {
       mode: "cors",
       method: 'GET',
       headers: {
@@ -22,7 +22,7 @@ export default class HomePage extends React.Component {
       .then(res => res.json())
       .then(res => {
         let getUserCourses = res.map(userInfo => {
-          return userInfo.course
+          return userInfo
         })
         this.setState({ courses: getUserCourses })
       })
@@ -51,7 +51,7 @@ export default class HomePage extends React.Component {
               courses.length === 0 ? (
                 <p>No courses available</p>
               ) : (
-                  courses.map((course,i) => {
+                  courses.map((infoCourse,i) => {
                     return (
                       <div className='card' key={i}>
                         <div className='table-responsive'>
@@ -73,16 +73,16 @@ export default class HomePage extends React.Component {
                                   </div>
                                 </td>
                                 <td>
-                                  <div>{course.title}</div>
+                                  <div>{infoCourse.course.title}</div>
                                   <div className='small text-muted'>
-                                    Mentor: {course.mentor}
+                                    Mentor: {infoCourse.mentor}
                                   </div>
                                 </td>
                                 <td>
-                                  <small>51-25-1209jsajsdkj;skfjlMaster 128412wdfadfjalsdkfj12412412412124124Python</small>
+                                  <small>{infoCourse.program.goal}</small>
                                 </td>
                                 <td>
-                                  <small className='text-center'>{course.begin} - {course.end}</small>
+                                  <small className='text-center'>{infoCourse.begin} - {infoCourse.end}</small>
                                 </td>
                                 <td>
                                   <div className='clearfix'>
@@ -99,7 +99,7 @@ export default class HomePage extends React.Component {
                           </table>
                           {
                             expandList === true && (
-                              <ExpandCourse courseId={course.id} />
+                              <ExpandCourse courseId={infoCourse.id} />
                             )
                           }
                         </div>
