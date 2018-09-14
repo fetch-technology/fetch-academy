@@ -11,7 +11,7 @@ class UserLessonAPIView(generics.ListAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        return user.lesson_set.filter(program=self.kwargs['program'])
+        return user.lesson_set.filter(program=self.kwargs['program']).order_by('pk')
 
 
 class DetailLessonAPIView(generics.RetrieveAPIView):
