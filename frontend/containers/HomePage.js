@@ -22,12 +22,10 @@ export default class HomePage extends React.Component {
     })
       .then(res => res.json())
       .then(res => {
-        console
         let getUserCourses = res.map(userInfo => {
           return userInfo
         })
         this.setState({ courses: getUserCourses })
-        fetch(`${API_URL}/api/v1/lessons/<int:program>`)
       })
 
   }
@@ -100,7 +98,7 @@ export default class HomePage extends React.Component {
                               </tr>
                             </tbody>
                           </table>
-                          <Courses courseId={courseInfo.id} expanding={expandList} />
+                          <Courses programId={courseInfo.program.id}  courseId={courseInfo.id} expanding={expandList} />
                         </div>
                       </div>
                     )

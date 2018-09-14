@@ -49,7 +49,9 @@ class App extends React.Component {
           },
           body: JSON.stringify({
             'access_token': info.Zi.access_token
-          })
+          }),
+          credentials: 'include'
+
         })
           .then(res => res.json())
           .then(res => {
