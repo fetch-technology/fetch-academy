@@ -4,7 +4,7 @@ from django.db.models import Prefetch
 from . import serializers
 from . import models
 from django.contrib.auth import get_user_model
- 
+
 
 class UserLessonAPIView(generics.ListAPIView):
     serializer_class = serializers.DetailUserLessonsSerializers
@@ -19,11 +19,11 @@ class UserCourseAPIView(generics.ListAPIView):
 
     def get_queryset(self):
         return models.Participation.objects.filter(user=self.kwargs['user'])
-      
+
 
 class CourseViewset(viewsets.ModelViewSet):
     serializer_class = serializers.CourseSerializer
-    queryset = models.Course.objects.all()    
+    queryset = models.Course.objects.all()
 
 
 class UserViewset(viewsets.ModelViewSet):
