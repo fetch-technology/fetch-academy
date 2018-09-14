@@ -18,9 +18,9 @@ class Program(BaseModel):
 
 class Course(BaseModel):
     program = models.ForeignKey(Program, on_delete=models.CASCADE)
-    mentor = models.ForeignKey(User, related_name='courses', on_delete=models.CASCADE)
+    mentor = models.ForeignKey(User, related_name='teaching_courses', on_delete=models.CASCADE)
     title = models.CharField(_('Title'), max_length=250)
-    students = models.ManyToManyField(User, through='Participation')
+    students = models.ManyToManyField(User, through='Participation', related_name='courses')
     lessons = models.ManyToManyField('Lesson', through='CourseLesson')
     begin = models.DateTimeField(_('Begin'), auto_now=True)
     end = models.DateTimeField(_('End'), blank=True, null=True)
