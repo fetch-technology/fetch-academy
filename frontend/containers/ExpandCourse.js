@@ -11,7 +11,7 @@ export default class Courses extends React.Component {
     }
   }
   componentDidMount() {
-    fetch(`${API_URL}/academy/api/v1/lessons/${this.props.programId}`, {
+    fetch(`${API_URL}/academy/api/v1/programs/${this.props.programId}/lessons`, {
       mode: "cors",
       method: 'GET',
       credentials: 'include',
