@@ -1,13 +1,28 @@
 import * as React from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Link } from 'react-router-dom'
+import { API_URL } from '../config'
 export default class CourseOverview extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      modal: false
+      modal: false,
+      course: null
     },
       this.toggle = this.toggle.bind(this);
+  }
+
+  componentDidMount() {
+    const courseId = this.props.match.params.id
+    fetch(`${API_URL}/academy/api/v1/user-courses/${courseId}`, {
+      method: 'GET',
+      credentials: 'include'
+    })
+      .then(res => res.json())
+      .then(res => {
+        console.log(res)
+        this.setState({ course: res })
+      })
   }
 
   toggle() {
@@ -15,8 +30,16 @@ export default class CourseOverview extends React.Component {
       modal: !this.state.modal
     });
   }
- 
+
   render() {
+    const { course } = this.state
+
+    if(!course){
+      return (
+        <div>LOADING ......</div>
+      )
+    }
+    const { program, mentor } = course
     return (
       <div>
         {/* {this.state.modal ? (): ''} */}
@@ -26,11 +49,9 @@ export default class CourseOverview extends React.Component {
               <div className='col-lg-4'>
                 <div className='card card-profile'>
                   <div className='card-body '>
-                    <h3 className='mb-3 text-center'>Lorem Ipsum</h3>
+                    <h3 className='mb-3 text-center'>{course.title}</h3>
                     <p className='mb-4'>
-                      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                      been the industry's standard dummy text ever since the 1500s, when an unknown printer took
-                       a galley of type and scrambled it to make a type specimen a book.
+                      {program.describe}
                     </p>
                   </div>
                 </div>
@@ -39,8 +60,8 @@ export default class CourseOverview extends React.Component {
                     <div className='media'>
                       <span className='avatar avatar-xxl mr-5' style={{ backgroundImage: 'url(./custom/8.jpg)' }}></span>
                       <div className='media-body'>
-                        <h4 className='m-0'>Juan Hernandez</h4>
-                        <p className='text-muted mb-0'>Webdeveloper</p>
+                        <h4 className='m-0'>{mentor.full_name}</h4>
+                        <p className='text-muted mb-0'>{mentor.email}</p>
                         <ul className='social-links list-inline mb-0 mt-2'>
                           <li className='list-inline-item'>
                             <a href='javascript:void(0)' title='Facebook' data-toggle='tooltip'><i className='fa fa-facebook'></i></a>
@@ -83,11 +104,12 @@ export default class CourseOverview extends React.Component {
                     <h3 className='card-title'>Particitpants</h3>
                   </div>
                   <div className='card-body' onClick={this.toggle}>
+
                     <div className='media-object avatar avatar-md mr-2' style={{ backgroundImage: 'url(demo/faces/male/16.jpg)' }}></div>
                     <div className='media-object avatar avatar-md mr-2' style={{ backgroundImage: 'url(demo/faces/male/16.jpg)' }}></div>
                     <div className='media-object avatar avatar-md mr-2' style={{ backgroundImage: 'url(demo/faces/male/16.jpg)' }}></div>
                     <div className='media-object avatar avatar-md mr-2' style={{ backgroundImage: 'url(demo/faces/male/16.jpg)' }}></div>
-                    <div className='media-object avatar avatar-md mr-2'>+3</div>
+                    <div className='media-object avatar avatar-md mr-2' style={{ backgroundImage: 'url(demo/faces/male/16.jpg)' }}></div>
                   </div>
                 </div>
               </div>
@@ -116,41 +138,24 @@ export default class CourseOverview extends React.Component {
                   <ul className='list-group card-list-group'>
                     <li className='list-group-item py-5'>
                       <div className='media'>
-                        <div className='media-object avatar avatar-md mr-4' style={{ backgroundImage: 'url(demo/faces/male/16.jpg)' }}></div>
                         <div className='media-body'>
                           <div className='media-heading'>
-                            <small className='float-right text-muted'>4 min</small>
                             <h5>Requirements</h5>
                           </div>
                           <div>
-                            It is a long established fact that a reader will be distracted by the
-                            readable content of a page when looking at its layout. The point of
-                             using Lorem Ipsum is that it has a more-or-less normal distribution
-                              of letters, as opposed to using 'Content here, content here', making
-                               it look like readable English. Many desktop publishing packages and
-                                web page editors now use Lorem Ipsum as their default model text,
-                                 and a search for 'lorem ipsum' will uncover many web sites still
-                                 in their infancy. Various versions have evolved over the years,
-                                 sometimes by accident, sometimes on purpose (injected humour and the like).
+                           {program.requirement}
                           </div>
                         </div>
                       </div>
                     </li>
                     <li className='list-group-item py-5'>
                       <div className='media'>
-                        <div className='media-object avatar avatar-md mr-4' style={{ background: 'url(demo/faces/male/16.jpg)' }}></div>
                         <div className='media-body'>
                           <div className='media-heading'>
-                            <small className='float-right text-muted'>12 min</small>
                             <h5>Goals</h5>
                           </div>
                           <div>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry
-                            . Lorem Ipsum has been the industry's standard dummy text ever since the
-                            1500s, when an unknown printer took a galley of type and scrambled it to
-                            make a type specimen book. It has survived not only five centuries, but
-                            also the leap into electronic typesetting, remaining essentially unchanged.
-                            sectetur adipiscing elit.
+                            {program.goal}
                           </div>
                         </div>
                       </div>
