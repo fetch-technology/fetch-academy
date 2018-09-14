@@ -15,6 +15,7 @@ export default class CourseOverview extends React.Component {
       modal: !this.state.modal
     });
   }
+ 
   render() {
     return (
       <div>

@@ -13,9 +13,15 @@ export default class HomePage extends React.Component {
   }
   componentDidMount() {
     fetch(`${API_URL}/academy/api/v1/user_courses/${USER_ID}`, {
+      mode: "cors",
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
     })
       .then(res => res.json())
       .then(res => {
+        console.log(res)
         let getUserCourses = res.map(userInfo => {
           return userInfo.course
         })
