@@ -26,7 +26,6 @@ class UserSerializer(serializers.ModelSerializer):
                 first_name=userinfo['given_name'],
                 last_name=userinfo['family_name']
             )
-
         login(self.context.get('request'), self.instance)
         return self.instance
 

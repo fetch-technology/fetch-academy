@@ -12,7 +12,7 @@ export default class HomePage extends React.Component {
     }
   }
   componentDidMount() {
-    fetch(`${API_URL}/academy/api/v1/user_courses`, {
+    fetch(`${API_URL}/academy/api/v1/user-courses`, {
       mode: "cors",
       method: 'GET',
       credentials: 'include',
@@ -74,9 +74,9 @@ export default class HomePage extends React.Component {
                                   </div>
                                 </td>
                                 <td>
-                                  <div>{courseInfo.course.title}</div>
+                                  <div>{courseInfo.title}</div>
                                   <div className='small text-muted'>
-                                    Mentor: {courseInfo.mentor}
+                                    Mentor: {courseInfo.mentor.full_name}
                                   </div>
                                 </td>
                                 <td>
@@ -98,7 +98,7 @@ export default class HomePage extends React.Component {
                               </tr>
                             </tbody>
                           </table>
-                          <Courses courseId={courseInfo.id} expanding={expandList} />
+                          <Courses programId={courseInfo.program.id}  courseId={courseInfo.id} expanding={expandList} />
                         </div>
                       </div>
                     )
