@@ -12,9 +12,10 @@ export default class HomePage extends React.Component {
     }
   }
   componentDidMount() {
-    fetch(`${API_URL}/academy/api/v1/user_courses/2`, {
+    fetch(`${API_URL}/academy/api/v1/user_courses`, {
       mode: "cors",
       method: 'GET',
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json'
       },

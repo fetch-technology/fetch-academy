@@ -12,7 +12,6 @@ import Profile from './Profile'
 import CourseOverview from './CourseOverview';
 import SignOutModal from '../components/SignOutModal';
 import SendMail from "./SendMail"
-import { PostCSS } from 'fuse-box';
 
 class App extends React.Component {
   constructor(props) {
@@ -44,13 +43,12 @@ class App extends React.Component {
       ggAuth.signIn().then((info) => {
         fetch(`${API_URL}/profile/api/v1/signup`, {
           method: 'POST',
-          mode: "cors",
+          mode: 'cors',
           headers: {
-
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            'access_token': info.getAuthResponse().login_hint
+            'access_token': info.Zi.access_token
           })
         })
           .then(res => res.json())
@@ -67,9 +65,8 @@ class App extends React.Component {
       <Router>
         <div>
           <Header {...this.state} handleSignOut={this.handleSignOut} toggle={this.toggleSignOutModal} />
-          <Route exact path='/' component={(props) => <HomePage {...this.state} isLoading={isLoading} {...props}></HomePage>}></Route>
-          <Route path='/login' component={() => (<LoginForm {...this.state} handleSignIn={this.handleSignIn} />)}>
-          </Route>
+          <Route exact path='/' component={(props) => <HomePage {...this.state} isLoading={isLoading} {...props}></HomePage>} />
+          <Route path='/login' component={() => (<LoginForm {...this.state} handleSignIn={this.handleSignIn} />)} />
           <Route path='/profile' component={(props) => <Profile isLoading={isLoading} {...props} />} />
           <Route path='/signout' component={SignOut} />
           <Route path='/courses/:courseId/lessons/:lessonId' component={CourseDetail} />
