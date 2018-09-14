@@ -11,6 +11,7 @@ import CourseDetail from './CourseDetail'
 import Profile from './Profile'
 import CourseOverview from './CourseOverview';
 import SignOutModal from '../components/SignOutModal';
+import SendMail from "./SendMail"
 import { PostCSS } from 'fuse-box';
 
 class App extends React.Component {
@@ -80,6 +81,7 @@ class App extends React.Component {
           <Route path='/' component={(props) =>
             <SignOutModal toggle={this.toggleSignOutModal} modal={modal} {...props}></SignOutModal>
           }></Route>
+          <Route path="/email" component={SendMail}></Route>
         </div>
       </Router>
     )

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework import generics, viewsets
+from rest_framework import generics, viewsets, mixins
 from django.db.models import Prefetch
 from . import serializers
 from . import models
@@ -14,9 +14,9 @@ class UserLessonAPIView(generics.ListAPIView):
         return user.lesson_set.filter(program=self.kwargs['program'])
 
 
-class UserCourseAPIView(generics.ListAPIView):
+class UserCourseAPIView(viewsets.ModelViewSet):
     serializer_class = serializers.UserCourseSerializer
-
+    lookup_field = 'course'
     def get_queryset(self):
         return models.Participation.objects.filter(user=self.kwargs['user'])
 

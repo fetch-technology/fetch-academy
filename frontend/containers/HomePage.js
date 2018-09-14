@@ -12,7 +12,7 @@ export default class HomePage extends React.Component {
     }
   }
   componentDidMount() {
-    fetch(`${API_URL}/academy/api/v1/user_courses/${USER_ID}`, {
+    fetch(`${API_URL}/academy/api/v1/user_courses/${USER_ID}/`, {
       mode: "cors",
       method: 'GET',
       headers: {
@@ -21,7 +21,6 @@ export default class HomePage extends React.Component {
     })
       .then(res => res.json())
       .then(res => {
-        console.log(res)
         let getUserCourses = res.map(userInfo => {
           return userInfo.course
         })
@@ -52,16 +51,16 @@ export default class HomePage extends React.Component {
               courses.length === 0 ? (
                 <p>No courses available</p>
               ) : (
-                  courses.map(course => {
+                  courses.map((course,i) => {
                     return (
-                      <div className='card'>
+                      <div className='card' key={i}>
                         <div className='table-responsive'>
                           <table className='table table-hover table-outline table-vcenter text-nowrap card-table'>
                             <thead>
                               <tr>
                                 <th className='text-center w-1'><i className='icon-people'></i></th>
                                 <th>Course</th>
-                                <th>Activity</th>
+                                <th>Goals</th>
                                 <th>Begin-End</th>
                                 <th>Progress</th>
                               </tr>
@@ -76,12 +75,11 @@ export default class HomePage extends React.Component {
                                 <td>
                                   <div>{course.title}</div>
                                   <div className='small text-muted'>
-                                    Mentor: {course.mentor.username}
+                                    Mentor: {course.mentor}
                                   </div>
                                 </td>
                                 <td>
-                                  <div className='small text-muted'>Last login</div>
-                                  <div>4 minutes ago</div>
+                                  <small>51-25-1209jsajsdkj;skfjlMaster 128412wdfadfjalsdkfj12412412412124124Python</small>
                                 </td>
                                 <td>
                                   <small className='text-center'>{course.begin} - {course.end}</small>

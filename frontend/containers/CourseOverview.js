@@ -83,11 +83,11 @@ export default class CourseOverview extends React.Component {
                     <h3 className='card-title'>Particitpants</h3>
                   </div>
                   <div className='card-body' onClick={this.toggle}>
-                    <div className='media-object avatar avatar-md mr-4' style={{ backgroundImage: 'url(demo/faces/male/16.jpg)' }}></div>
-                    <div className='media-object avatar avatar-md mr-4' style={{ backgroundImage: 'url(demo/faces/male/16.jpg)' }}></div>
-                    <div className='media-object avatar avatar-md mr-4' style={{ backgroundImage: 'url(demo/faces/male/16.jpg)' }}></div>
-                    <div className='media-object avatar avatar-md mr-4' style={{ backgroundImage: 'url(demo/faces/male/16.jpg)' }}></div>
-                    <div className='media-object avatar avatar-md mr-4'>+3</div>
+                    <div className='media-object avatar avatar-md mr-2' style={{ backgroundImage: 'url(demo/faces/male/16.jpg)' }}></div>
+                    <div className='media-object avatar avatar-md mr-2' style={{ backgroundImage: 'url(demo/faces/male/16.jpg)' }}></div>
+                    <div className='media-object avatar avatar-md mr-2' style={{ backgroundImage: 'url(demo/faces/male/16.jpg)' }}></div>
+                    <div className='media-object avatar avatar-md mr-2' style={{ backgroundImage: 'url(demo/faces/male/16.jpg)' }}></div>
+                    <div className='media-object avatar avatar-md mr-2'>+3</div>
                   </div>
                 </div>
               </div>

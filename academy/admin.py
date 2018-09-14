@@ -33,3 +33,4 @@ class ProgramAdmin(admin.ModelAdmin):
 admin.site.register(models.Course, CourseAdmin)
 admin.site.register(models.Participation)
 admin.site.register(models.UserLesson)
+admin.site.register(models.CourseLesson)
