@@ -3,7 +3,7 @@ from . import models
 # Register your models here.
 
 
-class ProfileInline(admin.TabularInline):
+class ProfileInline(admin.StackedInline):
     model = models.Profile
 
 

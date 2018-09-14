@@ -13,7 +13,7 @@ class UserLessonInline(admin.TabularInline):
     model = models.UserLesson  
 
 
-class LessonInline(admin.TabularInline):
+class LessonInline(admin.StackedInline):
     model = models.Lesson
 
 
