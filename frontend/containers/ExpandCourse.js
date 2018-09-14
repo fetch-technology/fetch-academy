@@ -46,9 +46,9 @@ export default class Courses extends React.Component {
             lessons.length === 0 ? (
               <p>No lesson learn </p>
             ) : (
-                lessons.map(lesson => {
+                lessons.map((lesson,i) => {
                   return (
-                    <li>
+                    <li key={i}>
                       <i className='fe fe-chevron-right mr-5'></i>
                       <Link to={`/courses/${this.props.courseId}/lessons/${lesson.id}`} className='font-weight-bold'>
                         {lesson.title}
