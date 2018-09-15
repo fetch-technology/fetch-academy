@@ -16,6 +16,7 @@
   "homepage": "https://github.com/fetch-technology/fetch-academy#readme",
   "dependencies": {
     "classnames": "^2.2.6",
+    "date-fns": "^1.29.0",
     "fs-extra": "^7.0.0",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
