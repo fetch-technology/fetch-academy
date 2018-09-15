@@ -2,6 +2,8 @@ import * as React from 'react'
 import { Redirect } from 'react-router-dom'
 import { ggAuth, USER_ID, API_URL } from '../config'
 import Courses from './ExpandCourse'
+import * as dateFns from 'date-fns'
+
 
 export default class HomePage extends React.Component {
   constructor(props) {
@@ -79,7 +81,10 @@ export default class HomePage extends React.Component {
                                   <small>{courseInfo.program.goal}</small>
                                 </td>
                                 <td>
-                                  <small className='text-center'>{courseInfo.begin} - {courseInfo.end}</small>
+                                  <small className='text-center'>
+                                    {dateFns.format(courseInfo.begin, 'DD/MM/YYYY')} -
+                                    {dateFns.format(courseInfo.end, 'DD/MM/YYYY')}
+                                  </small>
                                 </td>
                                 <td>
                                   <div className='clearfix'>
@@ -94,7 +99,7 @@ export default class HomePage extends React.Component {
                               </tr>
                             </tbody>
                           </table>
-                          <Courses programId={courseInfo.program.id}  courseId={courseInfo.id} expanding={expandList} />
+                          <Courses programId={courseInfo.program.id} courseId={courseInfo.id} expanding={expandList} />
                         </div>
                       </div>
                     )
