@@ -55,7 +55,7 @@ class UserCourseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Course
-        exclude = ['is_removed', 'lessons', 'created', 'modified']
+        exclude = ['is_removed', 'created', 'modified']
         depth = 2
 
     def get_student_count(self, model):
