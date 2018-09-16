@@ -13,6 +13,7 @@ const fuse = FuseBox.init({
   output: 'public/$name.js',
   useTypescriptCompiler: true,
   sourceMaps: true,
+  target: 'browser',
   plugins: [
     [ CSSResourcePlugin({ dist: 'public/css-resources', inline: false }),
       CSSPlugin({ group: 'app.css', outFile: 'public/app.css', inject: false }),

@@ -13,7 +13,7 @@ class UserLessonInline(admin.TabularInline):
     model = models.UserLesson  
 
 
-class LessonInline(admin.TabularInline):
+class LessonInline(admin.StackedInline):
     model = models.Lesson
 
 
@@ -33,3 +33,4 @@ class ProgramAdmin(admin.ModelAdmin):
 admin.site.register(models.Course, CourseAdmin)
 admin.site.register(models.Participation)
 admin.site.register(models.UserLesson)
+admin.site.register(models.CourseLesson)

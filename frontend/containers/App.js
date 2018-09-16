@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import { ggAuth, API_URL } from '../config'
+import { ggAuth, API_URL, USER_ID } from '../config'
 import { Modal } from 'reactstrap'
 
 import Header from './Header'
@@ -11,14 +11,15 @@ import CourseDetail from './CourseDetail'
 import Profile from './Profile'
 import CourseOverview from './CourseOverview';
 import SignOutModal from '../components/SignOutModal';
-import { PostCSS } from 'fuse-box';
+import SendMail from "./SendMail"
 
 class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       isLoading: true,
-      modal: false
+      modal: false,
+      userId: ''
     }
   }
 
@@ -40,22 +41,23 @@ class App extends React.Component {
   handleSignIn = () => {
     if (ggAuth.isSignedIn.get() === false) {
       ggAuth.signIn().then((info) => {
-        fetch(`${API_URL}/profile/api/v1/signup`, {
+        fetch(`${API_URL}/profile/api/v1/login`, {
           method: 'POST',
-          mode: "cors",
+          mode: 'cors',
+          credentials: 'include',
           headers: {
-            
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            'email': info.w3.U3,
-            'first_name': info.w3.ofa,
-            'last_name': info.w3.wea,
-            'username': info.w3.U3,
-            'password': 'django'
-          })
+            'access_token': info.Zi.access_token
+          }),
+          credentials: 'include'
         })
-        this.setState({ isLoading: false })
+          .then(res => res.json())
+          .then(res => {
+            USER_ID = res.id
+            this.setState({ isLoading: false })
+          })
       })
     }
   }
@@ -65,16 +67,17 @@ class App extends React.Component {
       <Router>
         <div>
           <Header {...this.state} handleSignOut={this.handleSignOut} toggle={this.toggleSignOutModal} />
-          <Route exact path='/' component={(props) => <HomePage isLoading={isLoading} {...props}></HomePage>}></Route>
-          <Route path='/login' component={() => (<LoginForm {...this.state} handleSignIn={this.handleSignIn} />)}>
-          </Route>
+          <Route exact path='/' component={(props) => <HomePage {...this.state} isLoading={isLoading} {...props}></HomePage>} />
+          <Route path='/login' component={() => (<LoginForm {...this.state} handleSignIn={this.handleSignIn} />)} />
           <Route path='/profile' component={(props) => <Profile isLoading={isLoading} {...props} />} />
           <Route path='/signout' component={SignOut} />
+          <Route exact path='/courses/:courseId/lessons/' component={CourseDetail} />
           <Route path='/courses/:courseId/lessons/:lessonId' component={CourseDetail} />
           <Route exact path='/courses/:id' component={CourseOverview} />
           <Route path='/' component={(props) =>
             <SignOutModal toggle={this.toggleSignOutModal} modal={modal} {...props}></SignOutModal>
           }></Route>
+          <Route path="/email" component={SendMail}></Route>
         </div>
       </Router>
     )
