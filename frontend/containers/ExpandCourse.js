@@ -34,7 +34,7 @@ export default class Courses extends React.Component {
     }
 
     return (
-      <Expand expanding={expanding}>
+      <Expand expanding={expanding} isCard={true}>
         <ul className='list-unstyled leading-loose ml-5'>
           <li className=''>
             <i className='fe fe-align-justify mr-5'></i>
