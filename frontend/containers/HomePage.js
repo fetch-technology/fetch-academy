@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Redirect } from 'react-router-dom'
 import { ggAuth, USER_ID, API_URL } from '../config'
-import Courses from './ExpandCourse'
+import ExpandedCourses from './ExpandedCourse'
 import * as dateFns from 'date-fns'
 
 
@@ -9,7 +9,6 @@ export default class HomePage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      expandList: false,
       courses: []
     }
   }
@@ -24,13 +23,16 @@ export default class HomePage extends React.Component {
     })
       .then(res => res.json())
       .then(res => {
+        res = res.map(course => {
+          return { ...course, expand: false }
+        })
         this.setState({ courses: res })
       })
 
   }
   render() {
     const { isLoading } = this.props
-    const { expandList, courses } = this.state
+    const { courses } = this.state
     if (isLoading) {
       return (
         <div>Loading</div>
@@ -65,7 +67,12 @@ export default class HomePage extends React.Component {
                               </tr>
                             </thead>
                             <tbody className='course'>
-                              <tr onClick={() => this.setState({ expandList: !expandList })}>
+                              <tr onClick={() => {
+                                let newCourses = [].concat(courses)
+                                let index = i
+                                newCourses[index].expand = !newCourses[index].expand
+                                this.setState({ courses: newCourses })
+                              }}>
                                 <td className='text-center' >
                                   <div className='avatar d-block' style={{ backgroundImage: `url(${user.Paa})` }}>
                                     <span className='avatar-status bg-green'></span>
@@ -99,7 +106,7 @@ export default class HomePage extends React.Component {
                               </tr>
                             </tbody>
                           </table>
-                          <Courses programId={courseInfo.program.id} courseId={courseInfo.id} expanding={expandList} />
+                          <ExpandedCourses lessons={courseInfo.lessons} programId={courseInfo.program.id} courseId={courseInfo.id} expanding={courseInfo.expand} />
                         </div>
                       </div>
                     )
