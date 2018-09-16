@@ -69,19 +69,22 @@ export default class CourseDetail extends React.Component {
         <div className='page-header'>
           <h1 className='page-title'>
             {courseTitle}
-            <div className='text-muted'>{lessons[curLessonIndx].title}</div>
+            {lessons.length > 0 && <div className='text-muted'>{lessons[curLessonIndx].title}</div>}
           </h1>
         </div>
         <div className='row'>
-          <LessonList className='col-lg-3 order-lg-1 sticky-top align-self-start'
-            courseId={courseId}
-            lessons={renderLessons} insertAt={curLessonIndx}
-            fileRef={this.fileRef} textRef={this.textRef} videoRef={this.videoRef} qAwnsRef={this.qAwnsRef}
-            onScrollToElement={this.onScrollToElement} ></LessonList>
-          <LessonContent content={lessons[curLessonIndx].content} videos={lessons[curLessonIndx].videos}
-            questionAwnser={lessons[curLessonIndx].exercises} attachments={lessons[curLessonIndx].files}
-            fileRef={this.fileRef} textRef={this.textRef} videoRef={this.videoRef} qAwnsRef={this.qAwnsRef}>
-          </LessonContent>
+          {lessons.length > 0 ?
+            <React.Fragment><LessonList className='col-lg-3 order-lg-1 sticky-top align-self-start'
+              courseId={courseId}
+              lessons={renderLessons} insertAt={curLessonIndx}
+              fileRef={this.fileRef} textRef={this.textRef} videoRef={this.videoRef} qAwnsRef={this.qAwnsRef}
+              onScrollToElement={this.onScrollToElement} ></LessonList>
+              <LessonContent content={lessons[curLessonIndx].content} videos={lessons[curLessonIndx].videos}
+                questionAwnser={lessons[curLessonIndx].exercises} attachments={lessons[curLessonIndx].files}
+                fileRef={this.fileRef} textRef={this.textRef} videoRef={this.videoRef} qAwnsRef={this.qAwnsRef}>
+              </LessonContent>
+            </React.Fragment>
+            : 'There no available Lessons'}
         </div>
       </div>
     )
