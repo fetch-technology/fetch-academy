@@ -71,6 +71,7 @@ class App extends React.Component {
           <Route path='/login' component={() => (<LoginForm {...this.state} handleSignIn={this.handleSignIn} />)} />
           <Route path='/profile' component={(props) => <Profile isLoading={isLoading} {...props} />} />
           <Route path='/signout' component={SignOut} />
+          <Route exact path='/courses/:courseId/lessons/' component={CourseDetail} />
           <Route path='/courses/:courseId/lessons/:lessonId' component={CourseDetail} />
           <Route exact path='/courses/:id' component={CourseOverview} />
           <Route path='/' component={(props) =>
