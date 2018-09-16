@@ -43,6 +43,7 @@
 
 tbody.course td {
     max-width: 200px;
+    min-width: 120px;
     white-space: normal;
 }
 a:hover {
