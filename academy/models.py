@@ -21,20 +21,11 @@ class Course(BaseModel):
     mentor = models.ForeignKey(User, related_name='teaching_courses', on_delete=models.CASCADE)
     title = models.CharField(_('Title'), max_length=250)
     students = models.ManyToManyField(User, through='Participation', related_name='courses')
-    lessons = models.ManyToManyField('Lesson', through='CourseLesson')
     begin = models.DateTimeField(_('Begin'), auto_now=True)
     end = models.DateTimeField(_('End'), blank=True, null=True)
 
     def __str__(self):
         return self.title
-
-    @property
-    def opened_lessons(self):
-        return Lesson.objects.filter(
-            pk__in=self.course_lessons.filter(status=True).values('lesson_id')
-        )
-        # return [rel.lesson
-        #        for rel in self.course_lessons.filter(course=self, status=True)]
 
 
 class Participation(BaseModel):
@@ -67,10 +58,6 @@ class Lesson(BaseModel):
 class UserLesson(BaseModel):
     student = models.ForeignKey(User, on_delete=models.CASCADE)
     lesson = models.ForeignKey(Lesson, related_name='user_lessons', on_delete=models.CASCADE)
-    status = models.BooleanField(default=False)
+    is_open = models.BooleanField(default=False)
+    seen = models.BooleanField(default=False)
 
-
-class CourseLesson(BaseModel):
-    course = models.ForeignKey(Course, related_name='course_lessons', on_delete=models.CASCADE)
-    lesson = models.ForeignKey(Lesson, related_name='course_lessons', on_delete=models.CASCADE)
-    status = models.BooleanField(default=False)
