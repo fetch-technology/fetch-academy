@@ -3,6 +3,7 @@ from django.utils.duration import _get_duration_components
 from django.contrib.auth import models as user_models
 from django.db.models import Count
 from . import models
+from profile import models as profile_models
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -12,12 +13,20 @@ class UserSerializer(serializers.ModelSerializer):
         exclude = ['password']
 
 
+class ProfileSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = profile_models.Profile
+        fields = '__all__'
+
+
 class UserProfileSerializer(serializers.ModelSerializer):
     full_name = serializers.SerializerMethodField()
+    profile = ProfileSerializer()
     
     class Meta:
         model = models.User
-        fields = ['last_name', 'first_name', 'email', 'full_name', 'id']
+        fields = ['last_name', 'first_name', 'email', 'full_name', 'id', 'profile']
 
     def get_full_name(self, model):
         return model.get_full_name()
@@ -51,7 +60,6 @@ class LessonSerializer(serializers.ModelSerializer):
 
 
 class ProgramSerializer(serializers.ModelSerializer):
-    # lessons = LessonSerializer(many=True)
 
     class Meta:
         model = models.Program
@@ -71,6 +79,8 @@ class UserCourseSerializer(serializers.ModelSerializer):
     students = UserProfileSerializer(read_only=True, many=True)
     student_count = serializers.SerializerMethodField()
     lessons = serializers.SerializerMethodField()
+    lesson_count = serializers.SerializerMethodField() 
+    opened_lesson_count = serializers.SerializerMethodField() 
 
     class Meta:
         model = models.Course
@@ -79,6 +89,14 @@ class UserCourseSerializer(serializers.ModelSerializer):
 
     def get_student_count(self, model):
          return model.students.count()
+    
+    def get_lesson_count(self, model):
+         return model.program.lessons.count()
+
+    def get_opened_lesson_count(self, model):
+        user_lessons = models.UserLesson.objects.filter(lesson__in=model.program.lessons.all(), is_open=True).count()
+        print(user_lessons)
+        return user_lessons
     
     def get_lessons(self, model):
         lessons = model.program.lessons.all()
