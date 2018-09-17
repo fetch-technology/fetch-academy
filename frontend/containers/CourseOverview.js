@@ -57,11 +57,11 @@ export default class CourseOverview extends React.Component {
                 </div>
                 <div className='card'>
                   <div className='card-body'>
-                    <div className='media'>
-                      <span className='avatar avatar-xxl mr-5' style={{ backgroundImage: 'url(./custom/8.jpg)' }}></span>
-                      <div className='media-body'>
+                    <div className='media d-flex flex-row'>
+                      <span className='avatar avatar-xxl mr-3' style={{ backgroundImage: 'url(./custom/8.jpg)' }}></span>
+                      <div className='media-body w-50'>
                         <h4 className='m-0'>{mentor.full_name}</h4>
-                        <p className='text-muted mb-0'>{mentor.email}</p>
+                        <p className='text-muted mb-0 text-justify'>{mentor.email}</p>
                         <ul className='social-links list-inline mb-0 mt-2'>
                           <li className='list-inline-item'>
                             <a href='javascript:void(0)' title='Facebook' data-toggle='tooltip'><i className='fa fa-facebook'></i></a>
