@@ -20,7 +20,6 @@ export default class CourseOverview extends React.Component {
     })
       .then(res => res.json())
       .then(res => {
-        console.log(res)
         this.setState({ course: res })
       })
   }
@@ -132,7 +131,7 @@ export default class CourseOverview extends React.Component {
               <div className='col-lg-8'>
                 <div className='card'>
                   <div className='card-header d-flex justify-content-end mb-5'>
-                    <Link className='btn btn-primary btn-lg font-weight-bold text-uppercase' to={`/courses/${courseId}/lessons/1`}>Start course</Link>
+                    <Link className='btn btn-primary btn-lg font-weight-bold text-uppercase' to={`/courses/${courseId}/lessons/`}>Start course</Link>
                   </div>
                   <ul className='list-group card-list-group'>
                     <li className='list-group-item py-5'>

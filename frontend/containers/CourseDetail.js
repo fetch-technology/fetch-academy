@@ -22,31 +22,37 @@ export default class CourseDetail extends React.Component {
   }
   componentDidMount() {
     const { lessonId, courseId } = this.props.match.params
-    if (!lessonId) {
-      this.props.history.push(`./1`)
-      return
-    }
     fetch(`${API_URL}/academy/api/v1/user-courses/${courseId}`, {
       credentials: 'include'
     })
       .then(res => res.json())
       .then(res => {
-        this.setState({ lessonCount: res.lesson_count, courseTitle: res.title, lessons: res.lessons })
-      })
-    fetch(`${API_URL}/academy/api/v1/lessons/${lessonId}`,
-      {
-        credentials: 'include',
-        method: 'GET'
-      }
-    )
-      .then((res) => res.json())
-      .then((res) => {
-        this.setState({ lesson: res })
+        this.setState({ lessonCount: res.lesson_count, courseTitle: res.title, lessons: res.program.lessons })
+        if (res.program.lessons.length == 0) {
+          this.setState({ lessons: [] })
+          return
+        }
+        if (!lessonId) {
+          this.props.history.push(`./${res.program.lessons[0].id}`)
+          return
+        }
+        fetch(`${API_URL}/academy/api/v1/lessons/${lessonId}`,
+          {
+            credentials: 'include',
+            method: 'GET'
+          }
+        )
+          .then((res) => res.json())
+          .then((res) => {
+            this.setState({ lesson: res })
+          })
       })
   }
   render() {
     const { courseTitle, lessons } = this.state
     const { courseId } = this.props.match.params
+    const { lessonId } = this.props.match.params
+
     if (!lessons) {
       return (
         <div>
@@ -54,9 +60,9 @@ export default class CourseDetail extends React.Component {
         </div>
       )
     }
-    const { lessonId } = this.props.match.params
-
-    const curLessonIndx = _.findIndex(lessons, (lesson) => lesson.id === +lessonId)
+    const curLessonIndx = _.findIndex(lessons, (lesson) => {
+      return lesson.id === +lessonId
+    })
     const renderLessons = lessons.map(lesson => {
       return {
         id: lesson.id, title: lesson.title, hasText: lesson.context != ''

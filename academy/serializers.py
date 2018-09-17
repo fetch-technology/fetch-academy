@@ -5,6 +5,13 @@ from django.db.models import Count
 from . import models
 
 
+class UserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.User
+        exclude = ['password']
+
+
 class UserProfileSerializer(serializers.ModelSerializer):
     full_name = serializers.SerializerMethodField()
     
@@ -16,18 +23,18 @@ class UserProfileSerializer(serializers.ModelSerializer):
         return model.get_full_name()
 
 
-class UserLessonSerializer(serializers.ModelSerializer):
-    student = UserProfileSerializer()
+class DetailLessonSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.UserLesson
+        model = models.Lesson
         fields = '__all__'
 
 
-class UserSerializer(serializers.ModelSerializer):
+class UserLessonSerializer(serializers.ModelSerializer):
+    lesson = DetailLessonSerializer()
 
     class Meta:
-        model = models.User
-        exclude = ['password']
+        model = models.UserLesson
+        fields = '__all__'
 
 
 class LessonSerializer(serializers.ModelSerializer):
@@ -35,20 +42,20 @@ class LessonSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Lesson
-        fields = '__all__'
+        fields = ['user_lessons']
 
     def get_user_lessons(self, model):
         user_lessons = model.user_lessons.filter(student=self.context['request'].user)
-        serializer = UserLessonSerializer(user_lessons, many=True)
+        serializer = UserLessonSerializer( model.user_lessons, many=True)
         return serializer.data
 
 
 class ProgramSerializer(serializers.ModelSerializer):
-    lessons = LessonSerializer(many=True)
+    # lessons = LessonSerializer(many=True)
 
     class Meta:
         model = models.Program
-        fields = ['name', 'describe', 'requirement', 'goal', 'id', 'lessons']
+        fields = ['name', 'describe', 'requirement', 'goal', 'id']
 
 
 class CourseSerializer(serializers.ModelSerializer):
@@ -58,36 +65,25 @@ class CourseSerializer(serializers.ModelSerializer):
 
 
 class UserCourseSerializer(serializers.ModelSerializer):
-    program = ProgramSerializer()
+    program = ProgramSerializer(read_only=True)
+    user = UserProfileSerializer(read_only=True)
+    mentor = UserProfileSerializer(read_only=True)
+    students = UserProfileSerializer(read_only=True, many=True)
+    student_count = serializers.SerializerMethodField()
+    lessons = serializers.SerializerMethodField()
 
     class Meta:
         model = models.Course
-        fields = '__all__'
-        depth = 4
+        exclude = ['is_removed', 'created', 'modified']
+        depth = 2
 
-
-# class UserCourseSerializer(serializers.ModelSerializer):
-#     user = UserProfileSerializer(read_only=True)
-#     program = ProgramSerializer(read_only=True)
-#     students = UserProfileSerializer(read_only=True, many=True)
-#     mentor = UserProfileSerializer(read_only=True)
-#     student_count = serializers.SerializerMethodField()
-#     opened_lesson_count = serializers.SerializerMethodField()
-#     lesson_count = serializers.SerializerMethodField()
-
-#     class Meta:
-#         model = models.Course
-#         exclude = ['is_removed', 'created', 'modified']
-#         depth = 2
-
-#     def get_student_count(self, model):
-#         return model.students.count()
-
-#     def get_opened_lesson_count(self, model):
-#         return model.opened_lessons.count()
-
-#     def get_lesson_count(self, model):
-#         return model.program.lessons.count()
+    def get_student_count(self, model):
+         return model.students.count()
+    
+    def get_lessons(self, model):
+        lessons = model.program.lessons.all()
+        serializer = LessonSerializer(lessons, many=True, context={'request': self.context['request']})
+        return serializer.data
 
 
 class DetailUserLessonsSerializers(serializers.ModelSerializer):
