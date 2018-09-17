@@ -11,22 +11,22 @@ export default class ExpandedCourses extends React.Component {
     }
   }
   componentDidMount() {
-    // fetch(`${API_URL}/academy/api/v1/programs/${this.props.programId}/lessons`, {
-    //   mode: "cors",
-    //   method: 'GET',
-    //   credentials: 'include',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   }
-    // })
-    //   .then(res => res.json())
-    //   .then(res => {
-    //     this.setState({ lessons: res })
-    //   })
+    fetch(`${API_URL}/academy/api/v1/programs/${this.props.programId}/lessons`, {
+      mode: "cors",
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(res => res.json())
+      .then(res => {
+        this.setState({ lessons: res })
+      })
   }
   render() {
-    const { expanding, lessons } = this.props
-    // const { lessons } = this.state
+    const { expanding } = this.props
+    const { lessons } = this.state
 
     if (!this.props.courseId) {
       return <p>This course is not in Fetch Academy</p>
