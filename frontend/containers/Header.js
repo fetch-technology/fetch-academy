@@ -22,7 +22,7 @@ class Header extends React.Component {
           <div className='container'>
             <div className='d-flex'>
               <Link className='header-brand' to='/'>
-                <img src='https://itviec.com/employers/fetch-technology-vietnam/logo/social/fetch-technology-vietnam-logo.png?VZtsiunoQVLaiSqZcL7Cs98F' 
+                <img src='https://forum.fetch.tech/uploads/default/original/1X/0976250120459f8d032523f089c0b7d416767031.png'
                 className='header-brand-img' alt='tabler logo' />
               </Link>
               <div className='d-flex ml-auto'>
