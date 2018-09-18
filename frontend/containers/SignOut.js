@@ -8,20 +8,20 @@ export default class SignOut extends React.Component {
       credentials: 'include'
     })
   }
-    componentDidMount() {
-      this.handleLogout()
-        if (ggAuth) {
-            ggAuth.signOut().then(() => {
-                this.props.history.push('/login')
-            })
-        }
-        else {
-            this.props.history.push('/login')
-        }
+  componentDidMount() {
+    this.handleLogout()
+    if (ggAuth) {
+      ggAuth.signOut().then(() => {
+        this.props.history.push('/login')
+      })
     }
-    render() {
-        return (
-            <div></div>
-        )
+    else {
+      this.props.history.push('/login')
     }
+  }
+  render() {
+    return (
+      <div></div>
+    )
+  }
 }

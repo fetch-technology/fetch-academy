@@ -11,31 +11,7 @@ export default class SendMail extends React.Component {
       <div className="container mt-4">
         <div className="row" >
           <div className="col-md-3">
-            {/* <h3 className="page-title mb-5">Mail Service</h3> */}
             <div className="card">
-              {/* <div class="list-group list-group-transparent mb-0">
-                  <a href="#" class="list-group-item list-group-item-action d-flex align-items-center active">
-                    <span class="icon mr-3"><i class="fe fe-inbox"></i></span>Inbox <span class="ml-auto badge badge-primary">14</span>
-                  </a>
-                  <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
-                    <span class="icon mr-3"><i class="fe fe-send"></i></span>Sent Mail
-                    </a>
-                  <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
-                    <span class="icon mr-3"><i class="fe fe-alert-circle"></i></span>Important <span class="ml-auto badge badge-secondary">3</span>
-                  </a>
-                  <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
-                    <span class="icon mr-3"><i class="fe fe-star"></i></span>Starred
-                    </a>
-                  <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
-                    <span class="icon mr-3"><i class="fe fe-file"></i></span>Drafts
-                    </a>
-                  <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
-                    <span class="icon mr-3"><i class="fe fe-tag"></i></span>Tags
-                    </a>
-                  <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
-                    <span class="icon mr-3"><i class="fe fe-trash-2"></i></span>Trash
-                    </a>
-                </div> */}
               <div className="card-header">
                 <h3 className="card-title">Selection:</h3>
               </div>

@@ -14,7 +14,7 @@ export default class CourseOverview extends React.Component {
 
   componentDidMount() {
     const { isLoading } = this.props
-    if (!isLoading) {
+    if (!isLoading && ggAuth.isSignedIn.get()) {
       const courseId = this.props.match.params.id
       fetch(`${API_URL}/academy/api/v1/user-courses/${courseId}`, {
         method: 'GET',
@@ -50,7 +50,6 @@ export default class CourseOverview extends React.Component {
     const { program, mentor } = course
     return (
       <div>
-        {/* {this.state.modal ? (): ''} */}
         <div className='my-3 my-md-5'>
           <div className='container'>
             <div className='row'>

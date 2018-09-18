@@ -24,9 +24,7 @@ export default class CourseDetail extends React.Component {
   componentDidMount() {
     const { lessonId, courseId } = this.props.match.params
     const { isLoading } = this.props
-    console.log(isLoading)
-    if (!isLoading) {
-      console.log('in')
+    if (!isLoading && ggAuth.isSignedIn.get()) {
       fetch(`${API_URL}/academy/api/v1/user-courses/${courseId}`, {
         credentials: 'include'
       })
