@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import { ggAuth, API_URL, USER_ID } from '../config'
 import { Modal } from 'reactstrap'
 
@@ -61,23 +61,25 @@ class App extends React.Component {
       })
     }
   }
+
   render() {
     const { isLoading, modal } = this.state
+
     return (
       <Router>
         <div>
           <Header {...this.state} handleSignOut={this.handleSignOut} toggle={this.toggleSignOutModal} />
           <Route exact path='/' component={(props) => <HomePage {...this.state} isLoading={isLoading} {...props}></HomePage>} />
           <Route path='/login' component={() => (<LoginForm {...this.state} handleSignIn={this.handleSignIn} />)} />
-          <Route path='/profile' component={(props) => <Profile isLoading={isLoading} {...props} />} />
-          <Route path='/signout' component={SignOut} />
-          <Route exact path='/courses/:courseId/lessons/' component={CourseDetail} />
-          <Route path='/courses/:courseId/lessons/:lessonId' component={CourseDetail} />
-          <Route exact path='/courses/:id' component={CourseOverview} />
+          <Route path='/profile' component={(props) => <Profile isLoading={isLoading} isLoading={isLoading} {...props} />} />
+          <Route path='/signout' component={(props) => <SignOut {...props} isLoading={isLoading}></SignOut>} />
+          <Route exact path='/courses/:courseId/lessons/' component={(props) => <CourseDetail {...props} isLoading={isLoading}></CourseDetail>} />
+          <Route path='/courses/:courseId/lessons/:lessonId' component={(props)=><CourseDetail {...props} isLoading= {isLoading}></CourseDetail>} />
+          <Route exact path='/courses/:id' component={(props)=><CourseOverview {...props} isLoading= {isLoading}></CourseOverview>} />
           <Route path='/' component={(props) =>
-            <SignOutModal toggle={this.toggleSignOutModal} modal={modal} {...props}></SignOutModal>
+            <SignOutModal toggle={this.toggleSignOutModal} modal={modal} {...props} isLoading= {isLoading}></SignOutModal>
           }></Route>
-          <Route path="/email" component={SendMail}></Route>
+          <Route path="/email" component={(props)=><SendMail {...props} isLoading= {isLoading}></SendMail>}></Route>
         </div>
       </Router>
     )

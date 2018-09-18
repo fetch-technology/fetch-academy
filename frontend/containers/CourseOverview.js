@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { Link } from 'react-router-dom'
-import { API_URL } from '../config'
+import { Link, Redirect } from 'react-router-dom'
+import { API_URL, ggAuth } from '../config'
 export default class CourseOverview extends React.Component {
   constructor(props) {
     super(props)
@@ -13,15 +13,18 @@ export default class CourseOverview extends React.Component {
   }
 
   componentDidMount() {
-    const courseId = this.props.match.params.id
-    fetch(`${API_URL}/academy/api/v1/user-courses/${courseId}`, {
-      method: 'GET',
-      credentials: 'include'
-    })
-      .then(res => res.json())
-      .then(res => {
-        this.setState({ course: res })
+    const { isLoading } = this.props
+    if (!isLoading) {
+      const courseId = this.props.match.params.id
+      fetch(`${API_URL}/academy/api/v1/user-courses/${courseId}`, {
+        method: 'GET',
+        credentials: 'include'
       })
+        .then(res => res.json())
+        .then(res => {
+          this.setState({ course: res })
+        })
+    }
   }
 
   toggle() {
@@ -32,9 +35,14 @@ export default class CourseOverview extends React.Component {
 
   render() {
     const { course } = this.state
+    const { isLoading } = this.props
     const courseId = this.props.match.params.id
-
-    if(!course){
+    if (!isLoading && !ggAuth.isSignedIn.get()) {
+      return (
+        <Redirect to='/login' />
+      )
+    }
+    if (!course) {
       return (
         <div>LOADING ......</div>
       )
@@ -141,7 +149,7 @@ export default class CourseOverview extends React.Component {
                             <h5>Requirements</h5>
                           </div>
                           <div>
-                           {program.requirement}
+                            {program.requirement}
                           </div>
                         </div>
                       </div>

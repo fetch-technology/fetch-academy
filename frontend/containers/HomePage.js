@@ -13,6 +13,8 @@ export default class HomePage extends React.Component {
     }
   }
   componentDidMount() {
+    const { isLoading } = this.props
+    if(!isLoading){
     fetch(`${API_URL}/academy/api/v1/user-courses`, {
       mode: "cors",
       method: 'GET',
@@ -28,7 +30,7 @@ export default class HomePage extends React.Component {
         })
         this.setState({ courses: res })
       })
-
+    }
   }
   render() {
     const { isLoading } = this.props

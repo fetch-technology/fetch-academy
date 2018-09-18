@@ -1,18 +1,23 @@
 import * as React from 'react'
 import { ggAuth } from '../config'
+import { Redirect } from 'react-router-dom'
 
 export default class Profile extends React.Component {
 
   render() {
     const { isLoading } = this.props
-    if (isLoading || (!isLoading && !ggAuth.isSignedIn.get())) {
+    if (isLoading) {
       return (
         <div className='header text-center'>
           <h1 className='m-0'>Loading...</h1>
         </div>
       )
     }
-
+    if (!isLoading && !ggAuth.isSignedIn.get()) {
+      return (
+        <Redirect to='/login' />
+      )
+    }
     const user = ggAuth.currentUser.Ab.w3
     return (
       <div className='container'>
