@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "description": "",
   "main": "fuse.js",
-  "scripts": {},
+  "scripts": {
+    "build": "node fuse --production"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fetch-technology/fetch-academy.git"
