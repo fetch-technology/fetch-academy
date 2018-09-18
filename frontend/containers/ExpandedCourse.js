@@ -11,7 +11,7 @@ export default class ExpandedCourses extends React.Component {
     }
   }
   componentDidMount() {
-    fetch(`${API_URL}/academy/api/v1/programs/${this.props.programId}/lessons`, {
+    fetch(`${API_URL}/academy/api/v1/user-courses/${this.props.courseId}`, {
       mode: "cors",
       method: 'GET',
       credentials: 'include',
@@ -21,7 +21,11 @@ export default class ExpandedCourses extends React.Component {
     })
       .then(res => res.json())
       .then(res => {
-        this.setState({ lessons: res })
+        
+        let fetchedLessons = res.lessons.map(lesson=>{
+          return lesson.user_lessons[0].lesson
+        })
+        this.setState({ lessons: fetchedLessons })
       })
   }
   render() {
