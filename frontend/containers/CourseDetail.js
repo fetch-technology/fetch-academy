@@ -28,27 +28,31 @@ export default class CourseDetail extends React.Component {
       .then(res => res.json())
       .then(res => {
         this.setState({ lessonCount: res.lesson_count, courseTitle: res.title })
-        console.log(res)
         if (res.lessons.length == 0) {
           this.setState({ lessons: [] })
           return
         }
-        let fetchedLessons = res.lessons.map(lessons => lessons.user_lessons[0].lesson)
+
+        let fetchedLessons = res.lessons.map(lesson => { 
+          return lesson.user_lessons[0].lesson 
+        })
         this.setState({ lessons: fetchedLessons })
         if (!lessonId) {
-          this.props.history.push(`./${res.lessons[0].id}`)
+          this.props.history.push(`./${res.lessons[0].user_lessons[0].id}`)
           return
         }
-        fetch(`${API_URL}/academy/api/v1/lessons/${lessonId}`,
-          {
-            credentials: 'include',
-            method: 'GET'
-          }
-        )
-          .then((res) => res.json())
-          .then((res) => {
-            this.setState({ lesson: res })
-          })
+        else {
+          fetch(`${API_URL}/academy/api/v1/lessons/${lessonId}`,
+            {
+              credentials: 'include',
+              method: 'GET'
+            }
+          )
+            .then((res) => res.json())
+            .then((res) => {
+              this.setState({ lesson: res })
+            })
+        }
       })
   }
   render() {
@@ -56,17 +60,18 @@ export default class CourseDetail extends React.Component {
     const { courseId } = this.props.match.params
     const { lessonId } = this.props.match.params
 
-    if (!lessons) {
+    if (!lessons || !lessonId) {
       return (
         <div>
           LOADING.........
         </div>
       )
     }
+
     const curLessonIndx = _.findIndex(lessons, (lesson) => {
+
       return lesson.id === +lessonId
     })
-    console.log(lessons)
     const renderLessons = lessons.map(lesson => {
       return {
         id: lesson.id, title: lesson.title, hasText: lesson.context != ''
