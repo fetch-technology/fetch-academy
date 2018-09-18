@@ -27,13 +27,16 @@ export default class CourseDetail extends React.Component {
     })
       .then(res => res.json())
       .then(res => {
-        this.setState({ lessonCount: res.lesson_count, courseTitle: res.title, lessons: res.program.lessons })
-        if (res.program.lessons.length == 0) {
+        this.setState({ lessonCount: res.lesson_count, courseTitle: res.title })
+        console.log(res)
+        if (res.lessons.length == 0) {
           this.setState({ lessons: [] })
           return
         }
+        let fetchedLessons = res.lessons.map(lessons => lessons.user_lessons[0].lesson)
+        this.setState({ lessons: fetchedLessons })
         if (!lessonId) {
-          this.props.history.push(`./${res.program.lessons[0].id}`)
+          this.props.history.push(`./${res.lessons[0].id}`)
           return
         }
         fetch(`${API_URL}/academy/api/v1/lessons/${lessonId}`,
@@ -63,6 +66,7 @@ export default class CourseDetail extends React.Component {
     const curLessonIndx = _.findIndex(lessons, (lesson) => {
       return lesson.id === +lessonId
     })
+    console.log(lessons)
     const renderLessons = lessons.map(lesson => {
       return {
         id: lesson.id, title: lesson.title, hasText: lesson.context != ''
