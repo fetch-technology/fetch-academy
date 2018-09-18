@@ -27,5 +27,5 @@ def deploy():
         run('pipenv run ./manage.py migrate')
         run('npm install')
         run('npm run build')
-        # run('pipenv run ./manage.py collectstatic --no-input')
+        run('pipenv run ./manage.py collectstatic --no-input')
         sudo('supervisorctl restart fetch_academy')
