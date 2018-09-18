@@ -3,7 +3,7 @@ const fb = {
   FuseBox, CopyPlugin, QuantumPlugin,
   LESSPlugin, CSSPlugin, CSSResourcePlugin
 } = require('fuse-box')
-const fs = require('fs-extra')
+
 const production = process.env.NODE_ENV === 'production'
   || process.env.ENV === 'production'
   || process.argv.includes('--production')
@@ -26,8 +26,6 @@ const fuse = FuseBox.init({
   ]
 })
 
-
-// fs.copy('frontend/assets/fonts/feather','public/fonts')
 const bundle = fuse.bundle('app')
   .instructions('> main.js')
 
