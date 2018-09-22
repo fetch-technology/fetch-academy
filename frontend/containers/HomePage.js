@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Redirect } from 'react-router-dom'
 import { ggAuth, USER_ID, API_URL } from '../config'
 import ExpandedCourses from './ExpandedCourse'
-import * as dateFns from 'date-fns'
+import { format as formatDate } from 'date-fns'
 
 
 export default class HomePage extends React.Component {
@@ -91,8 +91,8 @@ export default class HomePage extends React.Component {
                                 </td>
                                 <td>
                                   <small className='text-center'>
-                                    {dateFns.format(courseInfo.begin, 'DD/MM/YYYY')} -
-                                    {dateFns.format(courseInfo.end, 'DD/MM/YYYY')}
+                                    {formatDate(courseInfo.begin, 'DD/MM/YYYY')} -
+                                    {formatDate(courseInfo.end, 'DD/MM/YYYY')}
                                   </small>
                                 </td>
                                 <td>
