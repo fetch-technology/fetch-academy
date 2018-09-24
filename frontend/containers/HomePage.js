@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Redirect } from 'react-router-dom'
 import { ggAuth, USER_ID, API_URL } from '../config'
 import ExpandedCourses from './ExpandedCourse'
-import { format as formatDate } from 'date-fns'
+import * as formatDate from 'date-fns/format'
 
 
 export default class HomePage extends React.Component {

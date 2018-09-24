@@ -1,4 +1,5 @@
 from django.contrib import admin
+
 from . import models
 
 
@@ -6,11 +7,13 @@ class ParticipationInline(admin.TabularInline):
     model = models.Participation
     extra = 1
 
+
 class CourseAdmin(admin.ModelAdmin):
     inlines = (ParticipationInline,)
 
+
 class UserLessonInline(admin.TabularInline):
-    model = models.UserLesson  
+    model = models.UserLesson
 
 
 class LessonInline(admin.StackedInline):
@@ -29,6 +32,7 @@ class ProgramAdmin(admin.ModelAdmin):
     inlines = [
         LessonInline,
     ]
+
 
 admin.site.register(models.Course, CourseAdmin)
 admin.site.register(models.Participation)

@@ -1,9 +1,9 @@
-from django.db import models
-from fetch_academy.models import BaseModel
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.auth.models import User
-from django.utils.translation import ugettext_lazy as _
 from django.contrib.postgres.fields import ArrayField
-from ckeditor_uploader.fields import RichTextUploadingField 
+from django.db import models
+from django.utils.translation import ugettext_lazy as _
+from fetch_academy.models import BaseModel
 
 
 class Program(BaseModel):
@@ -11,7 +11,7 @@ class Program(BaseModel):
     describe = models.TextField(_('Describe'), blank=True, null=True)
     requirement = models.TextField(_('Requirement'), blank=True, null=True)
     goal = models.TextField(_('Goal'))
-    
+
     def __str__(self):
         return self.name
 
@@ -37,22 +37,22 @@ class Participation(BaseModel):
 
 class Lesson(BaseModel):
     title = models.CharField(_('Title'), max_length=250)
-    files = ArrayField(      
-                models.URLField(max_length=200),
-                size=10, null=True, blank=True
-        )
-    videos = ArrayField(      
-                models.URLField(max_length=200),
-                size=10, null=True, blank=True
-        )
+    files = ArrayField(
+        models.URLField(max_length=200),
+        size=10, null=True, blank=True
+    )
+    videos = ArrayField(
+        models.URLField(max_length=200),
+        size=10, null=True, blank=True
+    )
     title = models.CharField(_('Title'), max_length=250)
     content = RichTextUploadingField(_('Content'), null=True, blank=True)
     exercises = RichTextUploadingField(_('Exercises'),null=True, blank=True)
     program = models.ForeignKey( Program, related_name='lessons', on_delete=models.CASCADE)
     students = models.ManyToManyField(User, through='UserLesson')
-    
+
     def __str__(self):
-        return self.title
+        return '{} ({})'.format(self.title, self.program)
 
 
 class UserLesson(BaseModel):
@@ -60,4 +60,3 @@ class UserLesson(BaseModel):
     lesson = models.ForeignKey(Lesson, related_name='user_lessons', on_delete=models.CASCADE)
     is_open = models.BooleanField(default=False)
     seen = models.BooleanField(default=False)
-
